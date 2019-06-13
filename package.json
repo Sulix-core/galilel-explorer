@@ -9,7 +9,7 @@
   "scripts": {
     "build": "yarn run build:web",
     "build:web": "NODE_ENV=production webpack --progress --colors",
-    "cron:block": "./script/cron_block.sh >> ./tmp/block.log",
+    "cron:block": "node ./cron/block.js >> ./tmp/block.log",
     "cron:coin": "node ./cron/coin.js >> ./tmp/coin.log",
     "cron:masternode": "node ./cron/masternode.js >> ./tmp/masternode.log",
     "cron:peer": "node ./cron/peer.js >> ./tmp/peer.log",
@@ -72,7 +72,7 @@
     "style-loader": "^0.20.1",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^3.11.0",
-    "webpack-dev-server": ">=3.1.11",
+    "webpack-dev-server": "^2.11.1",
     "worker-loader": "^1.1.1"
   }
 }
