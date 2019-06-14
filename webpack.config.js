@@ -36,11 +36,13 @@ const prodPlugins = [
     algorithm: 'gzip',
     asset: '[path].gz[query]'
   }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: { warnings: false },
-    comments: false,
-    sourceMap: true,
-    minimize: false
+  new uglifyJsPlugin({
+    uglifyOptions: {
+      warnings: false,
+      comments: false,
+      minimize: false
+    },
+    sourceMap: true
   })
 ];
 
@@ -49,6 +51,7 @@ const envPlugins = process.env.NODE_ENV === 'production'
   : basePlugins;
 
 module.exports = {
+  mode: 'development',
   devServer: {
     compress: true,
     contentBase: path.resolve('public'),
@@ -97,7 +100,8 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve('public'),
-    publicPath: '/'
+    publicPath: '/',
+    globalObject: 'this'
   },
   plugins: envPlugins,
   resolve: {
