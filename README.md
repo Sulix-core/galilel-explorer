@@ -1,5 +1,13 @@
 # Galilel Block Explorer
 
+[![Build Status](https://travis-ci.com/Galilel-Project/galilel-explorer.svg?branch=master)](https://travis-ci.com/Galilel-Project/galilel-explorer)
+[![GitHub version](https://badge.fury.io/gh/Galilel-Project%2Fgalilel-explorer.svg)](https://github.com/Galilel-Project/galilel-explorer/releases)
+[![GitHub issues](https://img.shields.io/github/issues/Galilel-Project/galilel-explorer.svg)](https://github.com/Galilel-Project/galilel-explorer/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Galilel-Project/galilel-explorer.svg)](https://github.com/Galilel-Project/galilel-explorer/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/Galilel-Project/galilel-explorer.svg)](https://github.com/Galilel-Project/galilel-explorer/stargazers)
+[![GitHub license](https://img.shields.io/github/license/Galilel-Project/galilel-explorer.svg)](https://github.com/Galilel-Project/galilel-explorer/blob/master/LICENSE)
+[![GitHub downloads](https://img.shields.io/github/downloads/Galilel-Project/galilel-explorer/total.svg)](https://github.com/Galilel-Project/galilel-explorer/releases)
+
 ![](doc/img/explorer.jpg)
 
 Simple and beautiful cryptocurrency block explorer system. It includes a
@@ -28,27 +36,38 @@ explorer so that it syncs by the time you need it.
 
 ## Install
 
-`git clone https://github.com/Galilel-Project/galilel-explorer.git` - copy repo to local folder.
+Basic steps are to clone the repository into a local folder, switch into it and
+install the packages used by the system.
 
-`cd galilel-explorer` - change into project directory.
-
-`yarn install` - install packages used by the system.
+```
+git clone https://github.com/Galilel-Project/galilel-explorer.git
+cd galilel-explorer
+yarn install
+```
 
 ## Configuration
 
 ### API
 
-`cp config.template.js config.js` - setup configuration using template.
+Setup initial configuration using template. Edit the `config.js` afterwards as
+needed.
+
+```
+cp config.template.js config.js
+```
 
 ### Database
 
-`mongo` - connect using mongo client.
+You need to prepare MongoDB to store the blockchain data into it. Therefore a
+database and a user with read and write permissions with the values stored in
+the `config.js` must be created.
 
-`use galileldb` - switch to database.
-
-`db.createUser( { user: "galileluser", pwd: "galilelpassword", roles: [ "readWrite" ] } )` - create a user with the values stored in the `config.js` file from above, meaning they should match.
-
-`exit` - exit the mongo client.
+```
+mongo
+use galileldb
+db.createUser( { user: "galileluser", pwd: "galilelpassword", roles: [ "readWrite" ] } )
+exit
+```
 
 You should not build the frontend using the same `config.js` file as created
 above or you *will leak* sensitive database information.
@@ -59,19 +78,26 @@ The following automated tasks are currently needed for Galilel Explorer to
 update. First time you need to do initial sync of the blockchain via
 `node cron/block.js`, takes a lot of time.
 
-`yarn run cron:coin` - will fetch coin related information like price and
-supply from CoinMarketCap
+1. Fetch coin related information like price and supply from CoinMarketCap.
 
-`yarn run cron:masternode` - updates the masternodes list in the database with
-the most recent information clearing old information before.
+   `yarn run cron:coin`
 
-`yarn run cron:peer` - gather the list of peers and fetch geographical IP
-information.
+2. Update the masternodes list in the database with the most recent information
+   clearing old information before.
 
-`yarn run cron:block` - will sync blocks and transactions by storing them in
-the database.
+   `yarn run cron:masternode`
 
-`yarn run cron:rich` - generate the rich list.
+3. Gather the list of peers and fetch geographical IP information.
+
+   `yarn run cron:peer`
+
+4. Sync blocks and transactions by storing them in the database.
+
+   `yarn run cron:block`
+
+5. Generate the rich list.
+
+   `yarn run cron:rich`
 
 It is recommended to run all the crons before editing the crontab to have the
 information right away. Follow the order above, start with `cron:coin` and end
@@ -96,13 +122,20 @@ application and put it in the `/public` folder for delivery.
 
 ## Run
 
-`yarn run start:api` - will start the api.
+1. Start the API.
 
-`yarn run start:web` - will start the web, open browser [http://localhost:8081](http://localhost:8081).
+   `yarn run start:api`
+
+2. Start the web, open browser [http://localhost:8081](http://localhost:8081).
+
+   `yarn run start:web`
 
 ## Test
 
-`yarn run test:client` - will run the client side tests.
+1. Run the client side tests.
 
-`yarn run test:server` - will test the rpc connection, database connection, and
-api endpoints.
+   `yarn run test:client`
+
+2. Test the rpc connection, database connection, and API endpoints.
+
+   `yarn run test:server`
