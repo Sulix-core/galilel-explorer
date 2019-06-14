@@ -33,7 +33,7 @@ export default class CardPoSCalc extends React.Component {
 
   render() {
     return (
-      <Card title="PoS Calculator">
+      <Card title="Calculator">
         <div className="row">
           <div className="col-sm-12 col-md-8">
             <input
