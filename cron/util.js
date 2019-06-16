@@ -169,7 +169,7 @@ async function addPoS(block, rpctx) {
     isReward: isRewardRawTransaction
   };
 
-  // @Todo add POW Rewards (Before PoS switchover)
+  // @Todo add PoW Rewards (Before PoS switchover)
   // If our config allows us to extract additional reward data
   if (!!config.splitRewardsData) {
     // If this is a rewards transaction fetch the pos & masternode reward details
