@@ -60,7 +60,7 @@ async function vin(rpctx, blockHeight) {
             throw `*** UNSUPPORTED BLOCKCHAIN: Could not find related TX: ${vin.txid}`;
           }
 
-          const vinVout = txById.vout.find(vout => vout.n == vin.vout); // Notice how we are accessing by vout number instead of by index (as some vouts are not stored like POS)
+          const vinVout = txById.vout.find(vout => vout.n == vin.vout); // Notice how we are accessing by vout number instead of by index (as some vouts are not stored like PoS)
           vinDetails.relatedVout = {
             value: vinVout.value,
             address: vinVout.address,
@@ -154,7 +154,7 @@ async function addPoS(block, rpctx) {
   const txin = await vin(rpctx, block.height);
   const txout = await vout(rpctx, block.height);
 
-  // Give an ability for explorer to identify POS/MN rewards
+  // Give an ability for explorer to identify PoS/MN rewards
   const isRewardRawTransaction = blockchain.isRewardRawTransaction(rpctx);
 
   let txDetails = {
@@ -169,7 +169,7 @@ async function addPoS(block, rpctx) {
     isReward: isRewardRawTransaction
   };
 
-  // @Todo add POW Rewards (Before POS switchover)
+  // @Todo add POW Rewards (Before PoS switchover)
   // If our config allows us to extract additional reward data
   if (!!config.splitRewardsData) {
     // If this is a rewards transaction fetch the pos & masternode reward details

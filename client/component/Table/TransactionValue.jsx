@@ -11,7 +11,7 @@ const TransactionValue = (tx, blockValue) => {
   const formattedBlockValue = (numeral(blockValue).format('0,0.0000'));
 
   const getTransactionTitle = (tx) => {
-    let blockRewardTitle = 'Block Reward for POS & Masternode';
+    let blockRewardTitle = 'Block Reward for PoS & Masternode';
 
     // Check that tx has blockRewardDetails for backwards compatability
     if (tx.blockRewardDetails) {

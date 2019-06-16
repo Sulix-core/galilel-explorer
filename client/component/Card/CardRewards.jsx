@@ -32,11 +32,11 @@ export default class CardRewards extends Component {
         { key: 'blockHeight', title: 'Block #' },
         { key: 'posInputSize', title: 'Input Size' },
         { key: 'posInputConfirmations', title: 'Confirmations' },
-        { key: 'computedProfitabilityScore', title: 'POS Profitability Score' },
+        { key: 'computedProfitabilityScore', title: 'PoS Profitability Score' },
         { key: 'date', title: 'Created' },
 
         // Optional columns we could enable:
-        //{ key: 'posReward', title: 'POS Reward' },
+        //{ key: 'posReward', title: 'PoS Reward' },
         //{ key: 'masternodeAddress', title: 'MN Address' },
         //{ key: 'masternodeReward', title: 'MN Reward' },
       ]

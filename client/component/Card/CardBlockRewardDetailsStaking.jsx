@@ -60,7 +60,7 @@ export default class CardBlockRewardDetailsStaking extends Component {
             <span className="card__result">{inputConfirmations}</span>
           </div>
           <div className="card__row">
-            <span className="card__label">POS Profitability Score:</span>
+            <span className="card__label">PoS Profitability Score:</span>
             <span className="card__result">
               <Link to={"/rewards"}>
                 <PosProfitabilityScore reward={this.props.tx.blockRewardDetails} />

@@ -85,7 +85,7 @@ class TX extends Component {
     }
     return (
       <div>
-        <HorizontalRule title="Block Reward (POS)" />
+        <HorizontalRule title="Block Reward (PoS)" />
         <CardBlockRewardDetailsStaking tx={this.state.tx} />
       </div>
     );
