@@ -15,7 +15,6 @@ import CardPoS from '../component/Card/CardPoS';
 import CardPoSCalc from '../component/Card/CardPoSCalc';
 import CardStatus from '../component/Card/CardStatus';
 import WatchList from '../component/WatchList';
-import CardSeeSaw from '../component/Card/CardSeeSaw';
 
 class CoinSummary extends Component {
   static propTypes = {
@@ -39,7 +38,7 @@ class CoinSummary extends Component {
       ? this.props.txs[0].blockHeight
       : coin.blocks;
 
-    const watchlist = height >= blockchain.params.LAST_POW_BLOCK && height >= blockchain.params.LAST_SEESAW_BLOCK
+    const watchlist = height >= blockchain.params.LAST_POW_BLOCK
       ? this.props.searches
       : this.props.searches.slice(0, 7);
 
@@ -95,10 +94,6 @@ class CoinSummary extends Component {
               average={coin.avgBlockTime}
               height={height}
               posHeight={blockchain.params.LAST_POW_BLOCK} />
-            <CardSeeSaw
-              average={coin.avgBlockTime}
-              height={height}
-              ssHeight={blockchain.params.LAST_SEESAW_BLOCK} />
             {getCardHighlightedAddresses()}
 
             <WatchList
