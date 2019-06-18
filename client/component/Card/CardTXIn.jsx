@@ -1,4 +1,3 @@
-
 import Component from '../../core/Component';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
@@ -9,10 +8,12 @@ import React from 'react';
 import Table from '../Table';
 import config from '../../../config'
 
-//@todo this is wrong name for this card, it should be CardVins
+/**
+ * @todo this is wrong name for this card, it should be CardVins
+ */
 export default class CardTXIn extends Component {
   static defaultProps = {
-    txs: [] //@todo should be vins
+    txs: [] /* @todo should be vins */
   };
 
   static propTypes = {
@@ -42,8 +43,10 @@ export default class CardTXIn extends Component {
       ]
     };
 
-    // If any inputs have a related vout add some extra columns. 
-    // Ex: Coinbase transactions would not have relatedVout so we don't need to show a bunch of empty data
+    /**
+     * If any inputs have a related vout add some extra columns. 
+     * Ex: Coinbase transactions would not have relatedVout so we don't need to show a bunch of empty data
+     */
     if (this.props.txs.some(tx => tx.relatedVout)) {
       this.state.cols = [
         { key: 'address', title: 'Address' },
@@ -57,17 +60,17 @@ export default class CardTXIn extends Component {
   render() {
     return (
       <Table
-        cols={ this.state.cols }
-        data={ this.props.txs.map(tx => ({
+        cols={this.state.cols}
+        data={this.props.txs.map(tx => ({
           ...tx,
           address: tx.relatedVout
-            ? (<Link to={ `/address/${ tx.relatedVout.address }` }>{ this.getInputLabel(tx) }</Link>)
+            ? (<Link to={`/address/${ tx.relatedVout.address }`}>{this.getInputLabel(tx)}</Link>)
             : this.getInputLabel(tx),
           age: tx.relatedVout
-            ? (<Link to={ `/address/${ tx.relatedVout.address }` }>{ (tx.relatedVout.age / 60 / 60).toFixed(2) }h</Link>)
+            ? (<Link to={`/address/${ tx.relatedVout.address }`}>{(tx.relatedVout.age / 60 / 60).toFixed(2)}h</Link>)
             : '',
           confirmations: tx.relatedVout
-            ? (<Link to={ `/address/${ tx.relatedVout.address }` }>{ tx.relatedVout.confirmations }</Link>)
+            ? (<Link to={`/address/${ tx.relatedVout.address }`}>{tx.relatedVout.confirmations}</Link>)
             : '',
           value: tx.relatedVout
             ? (
@@ -76,7 +79,7 @@ export default class CardTXIn extends Component {
                 </span>
               )
             : 'N/A'
-        })) } />
+        }))} />
     );
   };
 }

@@ -36,17 +36,17 @@ class Footer extends Component {
             <div className="footer__data-block">
               <p className="footer__data-title">Status</p>
               <p>
-                <span className={ `u__dot u--text-${ statusColor }` }>&bull;</span>
-                <span>{ coin.status }</span>
+                <span className={`u__dot u--text-${statusColor}`}>&bull;</span>
+                <span>{coin.status}</span>
               </p>
             </div>
             <div className="footer__data-block">
               <p className="footer__data-title">Blocks</p>
-              <p><b>{ blocks }</b></p>
+              <p><b>{blocks}</b></p>
             </div>
             <div className="footer__data-block">
               <p className="footer__data-title">Time</p>
-              <p>{ `${ moment().utc().format('HH:mm') }  UTC`}</p>
+              <p>{`${moment().utc().format('HH:mm')} UTC`}</p>
             </div>
           </div>
         </div>

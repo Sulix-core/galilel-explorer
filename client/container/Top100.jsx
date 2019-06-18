@@ -1,4 +1,3 @@
-
 import Actions from '../core/Actions';
 import Component from '../core/Component';
 import { connect } from 'react-redux';
@@ -42,16 +41,16 @@ class Top100 extends Component {
       <div>
         <HorizontalRule title="Top 100" />
         <Table
-          cols={ this.state.cols }
-          data={ this.state.wallets.map((wallet, idx) => ({
+          cols={this.state.cols}
+          data={this.state.wallets.map((wallet, idx) => ({
             ...wallet,
             address: (
-              <Link to={ `/address/${ wallet.address }` }>{ wallet.address }</Link>
+              <Link to={ `/address/${ wallet.address }` }>{wallet.address}</Link>
             ),
             index: idx + 1,
             percent: numeral((wallet.value / this.props.coin.supply) * 100.0).format('0,0.00'),
             value: numeral(wallet.value).format('0,0.0000')
-          })) } />
+          }))} />
       </div>
     );
   };

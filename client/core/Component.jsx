@@ -1,16 +1,16 @@
-
 import React from 'react';
 
 import ErrorBlock from '../component/ErrorBlock';
 import Loading from '../component/Loading';
 
 export default class Component extends React.Component {
+
   /**
    * Format network hash power a second into:
-   *  - TH
-   *  - GH
-   *  - MH
-   *  - kH
+   * - TH
+   * - GH
+   * - MH
+   * - kH
    */
   formatNetHash = (hash) => {
     const labels = ['H', 'kH', 'MH', 'GH', 'TH'];

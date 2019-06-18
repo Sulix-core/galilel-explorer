@@ -1,4 +1,3 @@
-
 import config from '../../config'
 import Actions from '../core/Actions';
 import blockchain from '../../lib/blockchain';
@@ -23,7 +22,10 @@ class CoinSummary extends Component {
     onSearch: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired,
     searches: PropTypes.array.isRequired,
-    // State
+
+    /**
+     * State
+     */
     coins: PropTypes.array.isRequired,
     txs: PropTypes.array.isRequired,
   };

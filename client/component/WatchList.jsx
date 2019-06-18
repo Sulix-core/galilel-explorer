@@ -1,4 +1,3 @@
-
 import Component from '../core/Component';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -26,7 +25,10 @@ export default class WatchList extends Component {
     try {
       this.props.onSearch(term);
     } catch(err) {
-      // Do nothing.
+
+      /**
+       * Do nothing.
+       */
     }
   };
 
@@ -35,15 +37,15 @@ export default class WatchList extends Component {
 
     const watchItems = items.map((item, idx) => {
       return (
-        <div className="animated fadeIn" key={ idx }>
+        <div className="animated fadeIn" key={idx}>
           <div className="watch-list__item">
-            <div onClick={ ev => this.handleClose(ev, item) }>
+            <div onClick={ev => this.handleClose(ev, item)}>
               <Icon name="times-circle"
                 className="far watch-list__item-close"  />
             </div>
-            <div onClick={ ev => this.handleClick(ev, item) } >
+            <div onClick={ev => this.handleClick(ev, item)} >
               <div className="watch-list__item-text">
-                { item }
+                {item}
               </div>
             </div>
           </div>
@@ -59,8 +61,8 @@ export default class WatchList extends Component {
 
     return (
       <div className="watch-list">
-        <p className="watch-list__title">{ `Search History (${ props.items.length }) `}</p>
-        { this.getWatchItems() }
+        <p className="watch-list__title">{`Search History (${props.items.length}) `}</p>
+        {this.getWatchItems()}
       </div>
     );
   };

@@ -1,4 +1,3 @@
-
 import Actions from '../core/Actions';
 import Component from '../core/Component';
 import throttle from '../../lib/throttle';
@@ -31,20 +30,20 @@ class Movement extends Component {
       txs: []
     };
 
-    //This is a new, better implementation of debouncing. The problem with old approach is that the initial request will be delayed by 800ms. 
-    //First request should not be debounced, only actions after as majority of users will only view first page anyway, we need it to be as fast as possible;
+    /**
+     * This is a new, better implementation of debouncing. The problem with old approach is that the initial request will be delayed by 800ms. 
+     * First request should not be debounced, only actions after as majority of users will only view first page anyway, we need it to be as fast as possible;
+     */
     this.getThrottledTxs = throttle(() => {
-      this.props
-        .getTXs({
-          limit: this.state.size,
-          skip: (this.state.page - 1) * this.state.size
-        })
-        .then(({ pages, txs }) => {
-          this.setState({ pages, txs, loading: false }, () => {
-            this.props.setTXs(txs); // Add this set of new txs to store
-          });
-        })
-        .catch(error => this.setState({ error, loading: false }));
+      this.props.getTXs({
+        limit: this.state.size,
+        skip: (this.state.page - 1) * this.state.size
+      }).then(({ pages, txs }) => {
+        this.setState({ pages, txs, loading: false }, () => {
+          this.props.setTXs(txs); /* Add this set of new txs to store */
+        });
+      })
+      .catch(error => this.setState({ error, loading: false }));
     }, 800);
   };
 
@@ -65,7 +64,6 @@ class Movement extends Component {
   };
 
   handlePage = page => this.setState({ page }, this.getTXs);
-
   handleSize = size => this.setState({ size, page: 1 }, this.getTXs);
 
   render() {

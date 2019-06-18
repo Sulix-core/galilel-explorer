@@ -1,4 +1,3 @@
-
 import Actions from '../core/Actions';
 import Component from '../core/Component';
 import { connect } from 'react-redux';
@@ -28,10 +27,7 @@ class Peer extends Component {
   };
 
   componentDidMount() {
-    this.props
-      .getPeers()
-      .then(peers => this.setState({ peers, loading: false }))
-      .catch(error => this.setState({ error, loading: false }));
+    this.props.getPeers().then(peers => this.setState({ peers, loading: false })).catch(error => this.setState({ error, loading: false }));
   };
 
   render() {
@@ -45,8 +41,8 @@ class Peer extends Component {
       <div>
         <HorizontalRule title="Connections" />
         <Table
-          cols={ this.state.cols }
-          data={ this.state.peers.map(peer => ({
+          cols={this.state.cols}
+          data={this.state.peers.map(peer => ({
             ...peer,
             ip: (
               <div>
@@ -56,7 +52,7 @@ class Peer extends Component {
                   title={ peer.country } /> { peer.ip }
               </div>
             )
-          })) } />
+          }))} />
       </div>
     );
   };

@@ -15,7 +15,9 @@ export default class CardBlockRewardDetailsStaking extends Component {
   getBlockRewardLink(reward) {
     const posRestakeIndicator = <PosRestakeIndicator reward={reward} includeShortName={true} />;
     
-    // Link to the previous stake if this is a restake
+    /**
+     * Link to the previous stake if this is a restake
+     */
     if (reward.stake.input.isRestake) {
       return (
         <Link to={`/tx/${reward.stake.input.txId}`}>
@@ -28,7 +30,10 @@ export default class CardBlockRewardDetailsStaking extends Component {
   }
 
   render() {
-    // Ensure this reward transaction has new blockRewardDetails data (for backwards compatability)
+
+    /**
+     * Ensure this reward transaction has new blockRewardDetails data (for backwards compatability)
+     */
     if (this.props.tx.isReward && !this.props.tx.blockRewardDetails) {
       return null;
     }

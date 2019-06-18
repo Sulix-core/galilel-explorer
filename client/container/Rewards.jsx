@@ -15,7 +15,11 @@ import { PAGINATION_PAGE_SIZE } from '../constants';
 class Rewards extends Component {
   static propTypes = {
     getRewards: PropTypes.func.isRequired,
-    //@todo rewards: PropTypes.object.isRequired //@todo accept rewards from store & write to store with updated block reward data
+
+    /**
+     * @todo rewards: PropTypes.object.isRequired
+     * @todo accept rewards from store & write to store with updated block reward data
+     */
   };
 
   constructor(props) {
@@ -37,7 +41,10 @@ class Rewards extends Component {
         })
         .then(({ pages, rewards }) => {
           this.setState({ pages, rewards, loading: false }, () => {
-            //this.props.setRewards(rewards); //@todo
+
+            /**
+             * @todo this.props.setRewards(rewards);
+             */
           });
         })
         .catch(error => this.setState({ error, loading: false }));
@@ -61,7 +68,6 @@ class Rewards extends Component {
   };
 
   handlePage = page => this.setState({ page }, this.getThrottledRewards);
-
   handleSize = size => this.setState({ size, page: 1 }, this.getThrottledRewards);
 
   render() {
@@ -98,11 +104,17 @@ class Rewards extends Component {
 
 const mapDispatch = dispatch => ({
   getRewards: query => Actions.getRewards(null, query),
-  //setRewards: txs => Actions.setRewards(dispatch, rewards) //@todo
+
+  /**
+   * @todo setRewards: txs => Actions.setRewards(dispatch, rewards)
+   */
 });
 
 const mapState = state => ({
-  //rewards: //@todo
+
+  /**
+   * @todo rewardss
+   */
 });
 
 export default connect(mapState, mapDispatch)(Rewards);

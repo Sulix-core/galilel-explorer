@@ -13,7 +13,9 @@ const TransactionValue = (tx, blockValue) => {
   const getTransactionTitle = (tx) => {
     let blockRewardTitle = 'Block Reward for PoS & Masternode';
 
-    // Check that tx has blockRewardDetails for backwards compatability
+    /**
+     * Check that tx has blockRewardDetails for backwards compatability
+     */
     if (tx.blockRewardDetails) {
       const inputAgeHours = (tx.blockRewardDetails.stake.input.age / 60 / 60).toFixed(2);
       const inputConfirmations = tx.blockRewardDetails.stake.input.confirmations;

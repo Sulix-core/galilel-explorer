@@ -1,4 +1,3 @@
-
 import Chart from 'chart.js';
 import Component from '../../core/Component';
 import isEqual from 'lodash/isEqual';
@@ -33,8 +32,10 @@ export default class GraphLine extends Component {
   componentDidMount() {
     const el = document.getElementById(this.id);
 
-    // Change the clip area for the graph to avoid
-    // peak and valley cutoff.
+    /**
+     * Change the clip area for the graph to avoid
+     * peak and valley cutoff.
+     */
     Chart.canvasHelpers.clipArea = (ctx, clipArea) => {
       ctx.save();
       ctx.beginPath();
@@ -75,7 +76,7 @@ export default class GraphLine extends Component {
         datasets: [{
           borderColor: this.props.color,
           borderWidth: 3,
-          cubicInterpolationMode: 'monotone', // default
+          cubicInterpolationMode: 'monotone', /* default */
           capBezierPoints: true,
           data: this.props.data,
           fill: false,
@@ -160,9 +161,9 @@ export default class GraphLine extends Component {
   render() {
     return (
       <div
-        className={ `${ this.props.className ? this.props.className : '' }` }
+        className={`${ this.props.className ? this.props.className : '' }`}
         style={{ height: this.props.height, width: this.props.width }}>
-        <canvas id={ this.id } />
+        <canvas id={this.id} />
       </div>
     );
   };

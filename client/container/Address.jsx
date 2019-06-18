@@ -1,4 +1,3 @@
-
 import configUtils from '../../lib/configUtils';
 
 import Actions from '../core/Actions';
@@ -6,7 +5,6 @@ import Component from '../core/Component';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 
 import CardAddress from '../component/Card/CardAddress';
 import CardAddressTXs from '../component/Card/CardAddressTXs';
@@ -54,26 +52,23 @@ class Address extends Component {
   getAddress = () => {
     this.setState({ loading: true }, () => {
       const address = this.props.match.params.hash;
-      this.props
-        .getAddress({ address })
-        .then(({ balance, received, txs, utxo, isMasternode }) => {
-          this.setState({
-            address,
-            balance,
-            received,
-            txs,
-            utxo,
-            loading: false,
-            pages: Math.ceil(txs.length / this.state.size),
-            isMasternode
-          });
-        })
-        .catch(error => this.setState({ error, loading: false }));
+      this.props.getAddress({ address }).then(({ balance, received, txs, utxo, isMasternode }) => {
+        this.setState({
+          address,
+          balance,
+          received,
+          txs,
+          utxo,
+          loading: false,
+          pages: Math.ceil(txs.length / this.state.size),
+          isMasternode
+        });
+      })
+      .catch(error => this.setState({ error, loading: false }));
     });
   };
 
   handlePage = page => this.setState({ page: parseInt(page, 10) });
-
   handleSize = size => this.setState({ size: parseInt(size, 10), page: 1 }, () => {
     this.setState({ pages: Math.ceil(this.state.txs.length / this.state.size) });
   });
@@ -86,6 +81,7 @@ class Address extends Component {
       <MasternodesList title="Masternode For Address" isPaginationEnabled={false} getMNs={this.props.getMNs} hideCols={["addr"]} />
     );
   }
+
   getMasternodesAddressWidget = () => {
     const address = this.props.match.params.hash;
     const masternodesAddressWidget = configUtils.getCommunityAddressWidgetConfig(address, "masternodesAddressWidget");
@@ -97,7 +93,6 @@ class Address extends Component {
       <MasternodesList title={masternodesAddressWidget.title} isPaginationEnabled={masternodesAddressWidget.isPaginationEnabled} getMNs={this.props.getMasternodesAddressWidget} />
     );
   }
-
 
   render() {
     if (!!this.state.error) {
@@ -114,7 +109,9 @@ class Address extends Component {
         options={selectOptions} />
     );
 
-    // Setup internal pagination.
+    /**
+     * Setup internal pagination.
+     */
     let start = (this.state.page - 1) * this.state.size;
     let end = start + this.state.size;
 
@@ -145,11 +142,10 @@ class Address extends Component {
   };
 }
 
-
 const mapDispatch = (dispatch, ownProps) => ({
   getAddress: query => Actions.getAddress(query),
   getMNs: query => {
-    query.hash = ownProps.match.params.hash; // Add current wallet address to the filtering of getMNs(). Look at server/handler/blockex.js getMasternodes()
+    query.hash = ownProps.match.params.hash; /* Add current wallet address to the filtering of getMNs(). Look at server/handler/blockex.js getMasternodes() */
     return Actions.getMNs(query);
   },
   getMasternodesAddressWidget: query => {
@@ -158,13 +154,12 @@ const mapDispatch = (dispatch, ownProps) => ({
     if (!masternodesAddressWidget) {
       return null;
     }
-    query.addresses = masternodesAddressWidget.addresses; // Add array of wallet addresses to the filtering of getMNs(). Look at server/handler/blockex.js getMasternodes()
+    query.addresses = masternodesAddressWidget.addresses; /* Add array of wallet addresses to the filtering of getMNs(). Look at server/handler/blockex.js getMasternodes() */
     return Actions.getMNs(query);
   }
 });
 
 const mapState = state => ({
-
 });
 
 export default connect(mapState, mapDispatch)(Address);

@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -18,7 +17,10 @@ const CardPoS = ({ average, height, posHeight }) => {
     label = 'seconds';
     dur = blocks * average;
   }
-  // Convert to hours.
+
+  /**
+   * Convert to hours.
+   */
   else if (dur > 60) {
     label = 'hours';
     dur /= 60.0;
@@ -30,7 +32,7 @@ const CardPoS = ({ average, height, posHeight }) => {
       <div className="animated fadeIn">
         <div className="watch-list__item back-green">
           <div>
-            <Icon name="check-circle" className="far watch-list__item-close"  />
+            <Icon name="check-circle" className="far watch-list__item-close" />
           </div>
           <div className="watch-list__item-text">
             <h4
@@ -40,7 +42,7 @@ const CardPoS = ({ average, height, posHeight }) => {
                 height: '22px',
                 lineHeight: '20px'
               }}>
-              { dur.toFixed(2) } { label }
+              {dur.toFixed(2)} {label}
             </h4>
           </div>
         </div>

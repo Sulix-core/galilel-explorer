@@ -1,4 +1,3 @@
-
 import blockchain from '../../lib/blockchain';
 import Component from '../core/Component';
 import { connect } from 'react-redux';
@@ -83,9 +82,9 @@ class PoS extends Component {
           : { marginBottom: 5, marginTop: -9 }
         }>
         <Select
-          onChange={ v => this.setState({ mns: parseInt(v, 10) || 'None' }, this.getAmount) }
-          selectedValue={ this.state.mns }
-          options={ options } />
+          onChange={v => this.setState({ mns: parseInt(v, 10) || 'None' }, this.getAmount)}
+          selectedValue={this.state.mns}
+          options={options} />
       </div>
     );
   };
@@ -185,25 +184,25 @@ class PoS extends Component {
             <b>Block Subsidy:</b>
           </div>
           <div className="col-sm-8">
-            { numeral(vX.subsidy).format('0,0.0000') } GALI
+            {numeral(vX.subsidy).format('0,0.0000')} GALI
           </div>
           <div className="col-sm-4">
             <b>PoS:</b>
           </div>
           <div className="col-sm-8">
-            { numeral(vX.posSubsidy).format('0,0.0000') } GALI
+            {numeral(vX.posSubsidy).format('0,0.0000')} GALI
           </div>
           <div className="col-sm-4">
             <b>Masternode:</b>
           </div>
           <div className="col-sm-8">
-            { numeral(vX.mnSubsidy).format('0,0.0000') } GALI
+            {numeral(vX.mnSubsidy).format('0,0.0000')} GALI
           </div>
           <div className="col-sm-4">
             <b>Calculation Amount:</b>
           </div>
           <div className="col-sm-8">
-            { numeral(this.state.amount).format('0,0.0000') } GALI
+            {numeral(this.state.amount).format('0,0.0000')} GALI
           </div>
         </div>
         <hr />
@@ -213,7 +212,7 @@ class PoS extends Component {
             Masternode(s):
           </div>
           <div className="col-sm-12 col-md-2">
-            { this.renderMasternodeCount() }
+            {this.renderMasternodeCount()}
           </div>
           <div className="col-sm-12 col-md-2"></div>
           <div className="col-sm-12 col-md-2"></div>
@@ -239,7 +238,7 @@ class PoS extends Component {
             Masternode Amount (GALI):
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vX.mn).format('0,0.0000') }
+            {numeral(vX.mn).format('0,0.0000')}
           </div>
           <div className="col-sm-12 col-md-2"></div>
           <div className="col-sm-12 col-md-2"></div>
@@ -250,7 +249,7 @@ class PoS extends Component {
             Masternode Reward Interval (Hours):
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vX.mnHours).format('0,0.00') }
+            {numeral(vX.mnHours).format('0,0.00')}
           </div>
           <div className="col-sm-12 col-md-2"></div>
           <div className="col-sm-12 col-md-2"></div>
@@ -261,16 +260,16 @@ class PoS extends Component {
             Masternode Reward (GALI):
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vX.mnSubsidy * mns).format('0,0.0000') }
+            {numeral(vX.mnSubsidy * mns).format('0,0.0000')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vDay.mnSubsidy * mns).format('0,0.0000') }
+            {numeral(vDay.mnSubsidy * mns).format('0,0.0000')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vWeek.mnSubsidy * mns).format('0,0.0000') }
+            {numeral(vWeek.mnSubsidy * mns).format('0,0.0000')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vMonth.mnSubsidy * mns).format('0,0.0000') }
+            {numeral(vMonth.mnSubsidy * mns).format('0,0.0000')}
           </div>
         </div>
         <br />
@@ -279,7 +278,7 @@ class PoS extends Component {
             PoS Amount (GALI):
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vX.pos).format('0,0.0000') }
+            {numeral(vX.pos).format('0,0.0000')}
           </div>
           <div className="col-sm-12 col-md-2"></div>
           <div className="col-sm-12 col-md-2"></div>
@@ -290,7 +289,7 @@ class PoS extends Component {
             PoS Reward Interval (Hours):
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vX.posHours).format('0,0.00') }
+            {numeral(vX.posHours).format('0,0.00')}
           </div>
           <div className="col-sm-12 col-md-2"></div>
           <div className="col-sm-12 col-md-2"></div>
@@ -301,16 +300,16 @@ class PoS extends Component {
             PoS Reward (GALI):
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vX.posSubsidy).format('0,0.0000') }
+            {numeral(vX.posSubsidy).format('0,0.0000')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vDay.posSubsidy).format('0,0.0000') }
+            {numeral(vDay.posSubsidy).format('0,0.0000')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vWeek.posSubsidy).format('0,0.0000') }
+            {numeral(vWeek.posSubsidy).format('0,0.0000')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vMonth.posSubsidy).format('0,0.0000') }
+            {numeral(vMonth.posSubsidy).format('0,0.0000')}
           </div>
         </div>
         <hr />
@@ -320,16 +319,16 @@ class PoS extends Component {
             Total Amount (GALI):
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vX.mnSubsidy * mns + vX.posSubsidy).format('0,0.0000') }
+            {numeral(vX.mnSubsidy * mns + vX.posSubsidy).format('0,0.0000')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vDay.mnSubsidy * mns + vDay.posSubsidy).format('0,0.0000') }
+            {numeral(vDay.mnSubsidy * mns + vDay.posSubsidy).format('0,0.0000')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vWeek.mnSubsidy * mns + vWeek.posSubsidy).format('0,0.0000') }
+            {numeral(vWeek.mnSubsidy * mns + vWeek.posSubsidy).format('0,0.0000')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral(vMonth.mnSubsidy * mns + vMonth.posSubsidy).format('0,0.0000') }
+            {numeral(vMonth.mnSubsidy * mns + vMonth.posSubsidy).format('0,0.0000')}
           </div>
         </div>
         <div className="row">
@@ -337,16 +336,16 @@ class PoS extends Component {
             Total Amount (USD):
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral((vX.mnSubsidy * mns + vX.posSubsidy) * this.props.coin.usd).format('$0,0.00') }
+            {numeral((vX.mnSubsidy * mns + vX.posSubsidy) * this.props.coin.usd).format('$0,0.00')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral((vDay.mnSubsidy * mns + vDay.posSubsidy) * this.props.coin.usd).format('$0,0.00') }
+            {numeral((vDay.mnSubsidy * mns + vDay.posSubsidy) * this.props.coin.usd).format('$0,0.00')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral((vWeek.mnSubsidy * mns + vWeek.posSubsidy) * this.props.coin.usd).format('$0,0.00') }
+            {numeral((vWeek.mnSubsidy * mns + vWeek.posSubsidy) * this.props.coin.usd).format('$0,0.00')}
           </div>
           <div className="col-sm-12 col-md-2">
-            { numeral((vMonth.mnSubsidy * mns + vMonth.posSubsidy) * this.props.coin.usd).format('$0,0.00') }
+            {numeral((vMonth.mnSubsidy * mns + vMonth.posSubsidy) * this.props.coin.usd).format('$0,0.00')}
           </div>
         </div>
       </div>
@@ -355,7 +354,6 @@ class PoS extends Component {
 }
 
 const mapDispatch = dispatch => ({
-
 });
 
 const mapState = state => ({

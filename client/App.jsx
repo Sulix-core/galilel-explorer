@@ -1,4 +1,6 @@
-
+/**
+ * Main components
+ */
 import Actions from './core/Actions';
 import Component from './core/Component';
 import { connect } from 'react-redux';
@@ -10,7 +12,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import searchHistory from '../lib/searchHistory';
 
-// Route Containers
+/**
+ * Route Containers
+ */
 import Address from './container/Address';
 import API from './container/API';
 import Block from './container/Block';
@@ -27,7 +31,9 @@ import Statistics from './container/Statistics';
 import Top100 from './container/Top100';
 import TX from './container/TX';
 
-// Layout
+/**
+ * Layout
+ */
 import CoinSummary from './container/CoinSummary';
 import Footer from './component/Footer';
 import Icon from './component/Icon';
@@ -38,7 +44,10 @@ import SearchBar from './component/SearchBar';
 
 class App extends Component {
   static propTypes = {
-    // Dispatch
+
+    /**
+     * Dispatch
+     */
     getCoins: PropTypes.func.isRequired,
     getIsBlock: PropTypes.func.isRequired,
     getTXs: PropTypes.func.isRequired
@@ -52,6 +61,7 @@ class App extends Component {
       limit: 10,
       searches: []
     };
+
     this.timer = { coins: null, txs: null };
   };
 
@@ -64,15 +74,17 @@ class App extends Component {
       this.props.getCoins({ limit: 12 }),
       this.props.getTXs({ limit: 10 })
     ])
-      .then(() => {
+    .then(() => {
+      this.getCoins();
+      this.getTXs();
+      this.setState({ init: false });
+    })
+    .catch(
+      error => this.setState({ error }, () => {
         this.getCoins();
         this.getTXs();
-        this.setState({ init: false });
       })
-      .catch(error => this.setState({ error }, () => {
-        this.getCoins();
-        this.getTXs();
-      }));
+    );
   };
 
   componentWillUnmount() {
@@ -91,11 +103,8 @@ class App extends Component {
     }
 
     this.timer.coins = setTimeout(() => {
-      this.props
-        .getCoins({ limit: 12 })
-        .then(this.getCoins)
-        .catch(this.getCoins);
-    }, 30000); // 30 seconds
+      this.props.getCoins({ limit: 12 }).then(this.getCoins).catch(this.getCoins);
+    }, 30000); /* 30 seconds */
   };
 
   getTXs = () => {
@@ -104,11 +113,8 @@ class App extends Component {
     }
 
     this.timer.txs = setTimeout(() => {
-      this.props
-        .getTXs({ limit: 10 })
-        .then(this.getTXs)
-        .catch(this.getTXs);
-    }, 30000); // 30 seconds
+      this.props.getTXs({ limit: 10 }).then(this.getTXs).catch(this.getTXs);
+    }, 30000); /* 30 seconds */
   };
 
   handleRemove = (term) => {
@@ -116,26 +122,31 @@ class App extends Component {
   };
 
   handleSearch = (term) => {
-    // If term doesn't match then ignore.
+
+    /**
+     * If term doesn't match then ignore.
+     */
     if (!isTX(term) && !isBlock(term) && !isAddress(term)) {
       return;
     }
 
-    // Add to search history using localStorage.
+    /**
+     * Add to search history using localStorage.
+     */
     this.setState({ searches: searchHistory.add(term) });
 
-    // Setup path for search.
+    /**
+     * Setup path for search.
+     */
     let path = '/#/';
     if (isAddress(term)) {
       document.location.href = `/#/address/${term}`;
     } else if (!isNaN(term)) {
       document.location.href = `/#/block/${term}`;
     } else {
-      this.props
-        .getIsBlock(term)
-        .then((is) => {
-          document.location.href = `/#/${is ? 'block' : 'tx'}/${term}`;
-        });
+      this.props.getIsBlock(term).then((is) => {
+        document.location.href = `/#/${is ? 'block' : 'tx'}/${term}`;
+      });
     }
   };
 
@@ -149,34 +160,34 @@ class App extends Component {
     return (
       <HashRouter>
         <div className="page-wrapper">
-          <Menu onSearch={this.handleSearch} />
+          <Menu onSearch={ this.handleSearch } />
           <div className="content" id="body-content">
             <div className="content__wrapper">
               {/* <Notification /> */}
               <CoinSummary
-                onRemove={this.handleRemove}
-                onSearch={this.handleSearch}
-                searches={this.state.searches.reverse()} />
+                onRemove={ this.handleRemove }
+                onSearch={ this.handleSearch }
+                searches={ this.state.searches.reverse() } />
               <SearchBar
                 className="d-none d-md-block mb-3"
-                onSearch={this.handleSearch} />
+                onSearch={ this.handleSearch } />
               <div className="content__inner-wrapper">
                 <Switch>
-                  <Route exact path="/" component={Overview} />
-                  <Route exact path="/address/:hash" component={Address} />
-                  <Route exact path="/api" component={API} />
-                  <Route exact path="/block/:hash" component={Block} />
-                  <Route exact path="/coin" component={CoinInfo} />
-                  <Route exact path="/faq" component={FAQ} />
-                  <Route exact path="/masternode" component={Masternode} />
-                  <Route exact path="/rewards" component={Rewards} />
-                  <Route exact path="/movement" component={Movement} />
-                  <Route exact path="/peer" component={Peer} />
-                  <Route exact path="/pos/:amount" component={PoS} />
-                  <Route exact path="/statistics" component={Statistics} />
-                  <Route exact path="/top" component={Top100} />
-                  <Route exact path="/tx/:hash" component={TX} />
-                  <Route component={Error404} />
+                  <Route exact path="/" component={ Overview } />
+                  <Route exact path="/address/:hash" component={ Address } />
+                  <Route exact path="/api" component={ API } />
+                  <Route exact path="/block/:hash" component={ Block } />
+                  <Route exact path="/coin" component={ CoinInfo } />
+                  <Route exact path="/faq" component={ FAQ } />
+                  <Route exact path="/masternode" component={ Masternode } />
+                  <Route exact path="/rewards" component={ Rewards } />
+                  <Route exact path="/movement" component={ Movement } />
+                  <Route exact path="/peer" component={ Peer } />
+                  <Route exact path="/pos/:amount" component={ PoS } />
+                  <Route exact path="/statistics" component={ Statistics } />
+                  <Route exact path="/top" component={ Top100 } />
+                  <Route exact path="/tx/:hash" component={ TX } />
+                  <Route component={ Error404 } />
                 </Switch>
               </div>
               <Footer />
@@ -196,6 +207,9 @@ const mapDispatch = dispatch => ({
 
 const mapState = state => ({
 
+  /**
+   * Empty for now.
+   */
 });
 
 export default connect(mapState, mapDispatch)(App);

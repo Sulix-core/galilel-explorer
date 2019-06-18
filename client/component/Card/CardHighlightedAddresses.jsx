@@ -11,18 +11,21 @@ export default class CardHighlightedAddresses extends Component {
     try {
       this.props.onSearch(term.address);
     } catch(err) {
-      // Do nothing.
+
+      /**
+       * Do nothing.
+       */
     }
   };
 
   getHighlightedAddresses() {
     const highlightedAddresses = this.props.addresses.map((item, idx) => {
       return (
-        <div className="animated fadeIn" key={ idx } onClick={ ev => this.handleClick(ev, item) } >
+        <div className="animated fadeIn" key={idx} onClick={ev => this.handleClick(ev, item)} >
           <div className="watch-list__item">           
             <div>
               <div className="watch-list__item-text">
-                { item.label }
+                {item.label}
               </div>
             </div>
           </div>
@@ -34,15 +37,18 @@ export default class CardHighlightedAddresses extends Component {
   };
 
   render() {
-    // Do not render anything if there are no addresses to highlight
+
+    /**
+     * Do not render anything if there are no addresses to highlight
+     */
     if (this.props.addresses.length == 0) {
       return null;
     }
 
     return (
       <div className="watch-list">
-        <p className="watch-list__title">{ this.props.title }</p>
-        { this.getHighlightedAddresses() }
+        <p className="watch-list__title">{this.props.title}</p>
+        {this.getHighlightedAddresses()}
       </div>
     )
   }

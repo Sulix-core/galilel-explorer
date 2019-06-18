@@ -1,4 +1,3 @@
-
 import Actions from '../core/Actions';
 import Component from '../core/Component';
 import { connect } from 'react-redux';
@@ -34,7 +33,10 @@ class Overview extends Component {
   };
 
   render() {
-    // Setup the list of transactions with age since created.
+
+    /**
+     * Setup the list of transactions with age since created.
+     */
     const txs = this.props.txs.map(tx => {
       const createdAt = moment(tx.createdAt).utc();
       const diffSeconds = moment().utc().diff(createdAt, 'seconds');
@@ -82,8 +84,8 @@ class Overview extends Component {
       <div>
         <HorizontalRule title="Latest Blocks" />
         <Table
-          cols={ this.state.cols }
-          data={ txs } />
+          cols={this.state.cols}
+          data={txs} />
       </div>
     );
   };
@@ -94,7 +96,7 @@ const mapDispatch = dispatch => ({
 });
 
 const mapState = state => ({
-  txs: state.txs.filter((tx, index) => index < 10) // Only take first 10 items from txs
+  txs: state.txs.filter((tx, index) => index < 10) /* Only take first 10 items from txs */
 });
 
 export default connect(mapState, mapDispatch)(Overview);

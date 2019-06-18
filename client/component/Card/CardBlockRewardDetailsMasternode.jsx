@@ -11,7 +11,10 @@ export default class CardBlockRewardDetailsMasternode extends Component {
   };
 
   render() {
-    // Ensure this reward transaction has new blockRewardDetails data (for backwards compatability)
+
+    /**
+     * Ensure this reward transaction has new blockRewardDetails data (for backwards compatability)
+     */
     if (this.props.tx.isReward && !this.props.tx.blockRewardDetails) {
       return null;
     }

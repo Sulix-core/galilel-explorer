@@ -1,4 +1,6 @@
-
+/**
+ * Constants
+ */
 export const COIN = 'COIN';
 export const COINS = 'COINS';
 export const ERROR = 'ERROR';
@@ -6,7 +8,6 @@ export const TXS = 'TXS';
 export const WATCH_ADD = 'WATCH_ADD';
 export const WATCH_REMOVE = 'WATCH_REMOVE';
 export const REWARDS = 'REWARDS';
-
 export const API_BASE = location.origin;
 export const PAGINATION_PAGE_SIZE = [
   { label: '10', value: 10 },
@@ -22,7 +23,6 @@ export default {
   TXS,
   WATCH_ADD,
   WATCH_REMOVE,
-
   API_BASE,
   REWARDS
 };

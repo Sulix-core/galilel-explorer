@@ -1,4 +1,3 @@
-
 import Component from '../../core/Component';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
@@ -9,10 +8,12 @@ import React from 'react';
 import Table from '../Table';
 import config from '../../../config'
 
-//@todo this is wrong name for this card, it should be CardVouts
+/**
+ * @todo this is wrong name for this card, it should be CardVouts
+ */
 export default class CardTXOut extends Component {
   static defaultProps = {
-    txs: [] //@todo should be vouts
+    txs: [] /* @todo should be vouts */
   };
 
   static propTypes = {
@@ -32,18 +33,18 @@ export default class CardTXOut extends Component {
   render() {
     return (
       <Table
-        cols={ this.state.cols }
-        data={ this.props.txs.map(tx => ({
+        cols={this.state.cols}
+        data={this.props.txs.map(tx => ({
           ...tx,
           address: (
-            <Link to={ `/address/${ tx.address }` }>{ tx.address }</Link>
+            <Link to={`/address/${ tx.address }`}>{ tx.address }</Link>
           ),
           value: (
             <span className="badge badge-success">
-              { numeral(tx.value).format(config.coinDetails.coinNumberFormat) } {config.coinDetails.shortName}
+              {numeral(tx.value).format(config.coinDetails.coinNumberFormat)} {config.coinDetails.shortName}
             </span>
           )
-        })) } />
+        }))} />
     );
   };
 }

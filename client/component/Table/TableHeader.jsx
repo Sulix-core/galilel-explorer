@@ -1,4 +1,3 @@
-
 import Component from '../../core/Component';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -8,25 +7,27 @@ import React from 'react';
  * @param {Object} props The props with the name.
  */
 const TableHeader = (props) => {
-    const cells = props.cols.map((col, idx) => {
-      if (typeof col === 'object') {
-        col = col.title;
-      }
+  const cells = props.cols.map((col, idx) => {
+    if (typeof col === 'object') {
+      col = col.title;
+    }
 
-      //@todo add alignment & tooltipTitle options
-
-      return (
-        <th key={ idx } >{ col }</th>
-      )
-    });
+    /**
+     * @todo add alignment & tooltipTitle options
+     */
 
     return (
-      <thead>
-        <tr>
-          { cells }
-        </tr>
-      </thead>
-    );
+      <th key={idx}>{col}</th>
+    )
+  });
+
+  return (
+    <thead>
+      <tr>
+        {cells}
+      </tr>
+    </thead>
+  );
 };
 
 TableHeader.propTypes = {

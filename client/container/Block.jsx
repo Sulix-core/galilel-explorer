@@ -1,4 +1,3 @@
-
 import Actions from '../core/Actions';
 import Component from '../core/Component';
 import { connect } from 'react-redux';
@@ -39,12 +38,10 @@ class Block extends Component {
 
   getBlock = () => {
     this.setState({ loading: true }, () => {
-      this.props
-        .getBlock(this.props.match.params.hash)
-        .then(({ block, txs }) => {
-          this.setState({ block, txs, loading: false });
-        })
-        .catch(error => this.setState({ error, loading: false }));
+      this.props.getBlock(this.props.match.params.hash).then(({ block, txs }) => {
+        this.setState({ block, txs, loading: false });
+      })
+      .catch(error => this.setState({ error, loading: false }));
     });
   };
 
@@ -58,9 +55,9 @@ class Block extends Component {
     return (
       <div>
         <HorizontalRule title="Block Info" />
-        <CardBlock block={ this.state.block } height={ this.props.tx.blockHeight } />
+        <CardBlock block={this.state.block} height={this.props.tx.blockHeight} />
         <HorizontalRule title="Block Transactions" />
-        <CardBlockTXs txs={ this.state.txs } />
+        <CardBlockTXs txs={this.state.txs} />
       </div>
     );
   };

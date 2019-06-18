@@ -1,4 +1,3 @@
-
 import Chart from 'chart.js';
 import Component from '../../core/Component';
 import isEqual from 'lodash/isEqual';
@@ -34,8 +33,10 @@ export default class GraphLineFull extends Component {
   componentDidMount() {
     const el = document.getElementById(this.id);
 
-    // Change the clip area for the graph to avoid
-    // peak and valley cutoff.
+    /**
+     * Change the clip area for the graph to avoid
+     * peak and valley cutoff.
+     */
     Chart.canvasHelpers.clipArea = (ctx, clipArea) => {
       ctx.save();
       ctx.beginPath();
@@ -71,7 +72,9 @@ export default class GraphLineFull extends Component {
     max = max + (max * 0.1);
     min = min - (min * 0.1);
 
-    // Setup the fill gradient.
+    /**
+     * Setup the fill gradient.
+     */
     const canvas = document.getElementById(this.id);
     const ctx = canvas.getContext('2d');
     let gradientFill;
@@ -91,11 +94,11 @@ export default class GraphLineFull extends Component {
           backgroundColor: gradientFill,
           borderColor: this.props.color,
           borderWidth: 2,
-          cubicInterpolationMode: 'monotone', // default
+          cubicInterpolationMode: 'monotone', /* default */
           capBezierPoints: true,
           data: data,
           fill: true,
-          lineTension: 0.05, // 0.55
+          lineTension: 0.05, /* 0.55 */
           pointRadius: 2,
           showLine: true,
           spanGaps: true,
@@ -173,7 +176,7 @@ export default class GraphLineFull extends Component {
   render() {
     return (
       <div style={{ height: this.props.height, width: this.props.width }}>
-        <canvas id={ this.id } />
+        <canvas id={this.id} />
       </div>
     );
   };

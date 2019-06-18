@@ -1,4 +1,3 @@
-
 import Component from '../core/Component';
 import React from 'react';
 
@@ -11,10 +10,10 @@ export default class API extends Component {
   getSections = () => {
     return APIdata.map((section, idx) => {
       return <APIsection
-        key={ idx }
-        heading={ section.heading }
-        subHeading={ section.subHeading }
-        calls={ section.calls } />
+        key={idx}
+        heading={section.heading}
+        subHeading={section.subHeading}
+        calls={section.calls} />
     });
   };
 
@@ -30,7 +29,7 @@ export default class API extends Component {
               The block explorer provides an API allowing users and/or applications to retrieve information from the network without the need for a local wallet.
               </p>
               <div className="api__call-container">
-                { this.getSections() }
+                {this.getSections()}
               </div>
             </div>
           </div>

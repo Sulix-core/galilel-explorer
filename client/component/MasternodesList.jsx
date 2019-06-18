@@ -43,7 +43,9 @@ class MasternodesList extends Component {
       size: 10
     };
 
-    // You can optionally pass in array of columns to hide in masternodes table
+    /**
+     * You can optionally pass in array of columns to hide in masternodes table
+     */
     if (!!this.props.hideCols) {
       this.state.cols = this.state.cols.filter((value) => {
         return !this.props.hideCols.includes(value.key);
@@ -51,15 +53,13 @@ class MasternodesList extends Component {
     }
 
     this.getThrottledMns = throttle(() => {
-      this.props
-        .getMNs({
-          limit: this.state.size,
-          skip: (this.state.page - 1) * this.state.size
-        })
-        .then(({ mns, pages }) => {
-          this.setState({ mns, pages, loading: false });
-        })
-        .catch(error => this.setState({ error, loading: false }));
+      this.props.getMNs({
+        limit: this.state.size,
+        skip: (this.state.page - 1) * this.state.size
+      }).then(({ mns, pages }) => {
+        this.setState({ mns, pages, loading: false });
+      })
+      .catch(error => this.setState({ error, loading: false }));
     }, 800);
   };
 
@@ -80,7 +80,6 @@ class MasternodesList extends Component {
   };
 
   handlePage = page => this.setState({ page }, this.getMNs);
-
   handleSize = size => this.setState({ size, page: 1 }, this.getMNs);
 
   render() {
@@ -129,8 +128,10 @@ class MasternodesList extends Component {
       }
     }
 
-    // Calculate the future so we can use it to
-    // sort by lastPaid in descending order.
+    /**
+     * Calculate the future so we can use it to
+     * sort by lastPaid in descending order.
+     */
     const future = moment().add(2, 'years').utc().unix();
 
     return (

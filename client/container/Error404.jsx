@@ -1,4 +1,3 @@
-
 import Component from '../core/Component';
 import React from 'react';
 

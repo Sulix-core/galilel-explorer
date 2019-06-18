@@ -23,7 +23,7 @@ const PosRestakeIndicator = ({ reward, includeShortName = false }) => {
   }
 
   const formatAmount = (amountToFormat) => {
-    const amountFormatted = (numeral(amountToFormat).format(config.coinDetails.coinNumberFormat)); //@todo We really need to move all of these formattings into a single component
+    const amountFormatted = (numeral(amountToFormat).format(config.coinDetails.coinNumberFormat)); /* @todo We really need to move all of these formattings into a single component */
 
     if (includeShortName) {
       return `${amountFormatted} ${config.coinDetails.shortName}`;

@@ -11,7 +11,7 @@ const PosProfitabilityScore = ({ reward, includeTitle = true }) => {
     const weightColorScale = config.profitabilityScore.weightColorScale;
     const scores = config.profitabilityScore.scoreStyles;
 
-    let profitabilityStyle = scores[scores.length - 1]; // Worst case by default
+    let profitabilityStyle = scores[scores.length - 1]; /* Worst case by default */
 
     for (let i = 0; i < scores.length; i++) {
       if (profitabilityWeight < weightColorScale * Math.pow(2, i + 1)) {

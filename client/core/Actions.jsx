@@ -1,4 +1,3 @@
-
 import fetchWorker from '../../lib/fetch.worker';
 import promise from 'bluebird';
 import {
@@ -86,7 +85,7 @@ export const getIsBlock = (query) => {
 
 export const getMNs = (query) => {
   return new promise((resolve, reject) => {
-    return getFromWorker('mns', resolve, reject, query); // Resolves to getMNs in fetch.worker.js
+    return getFromWorker('mns', resolve, reject, query); /* Resolves to getMNs in fetch.worker.js */
   });
 };
 
@@ -195,17 +194,23 @@ export const getTXsWeek = () => {
   });
 };
 
-// This is currently the only action that updates anything in the store - Look at Reducers.jsx, txs()
+/**
+ * This is currently the only action that updates anything in the store - Look at Reducers.jsx, txs()
+ */
 export const setTXs = (dispatch, txs) => {
   dispatch({ payload: txs, type: TXS });
 };
 
-//@todo Remove, don't think this is used
+/**
+ * @todo Remove, don't think this is used
+ */
 export const setWatch = (dispatch, term) => {
   dispatch({ payload: term, type: WATCH_ADD });
 };
 
-//@todo Remove, don't think this is used
+/**
+ * @todo Remove, don't think this is used
+ */
 export const removeWatch = (dispatch, term) => {
   dispatch({ payload: term, type: WATCH_REMOVE });
 };

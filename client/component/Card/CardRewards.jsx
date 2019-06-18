@@ -1,4 +1,3 @@
-
 import Component from '../../core/Component';
 import { dateFormat } from '../../../lib/date';
 import { Link } from 'react-router-dom';
@@ -35,18 +34,24 @@ export default class CardRewards extends Component {
         { key: 'computedProfitabilityScore', title: 'PoS Profitability Score' },
         { key: 'date', title: 'Created' },
 
-        // Optional columns we could enable:
-        //{ key: 'posReward', title: 'PoS Reward' },
-        //{ key: 'masternodeAddress', title: 'MN Address' },
-        //{ key: 'masternodeReward', title: 'MN Reward' },
+        /**
+         * Optional columns we could enable:
+         * { key: 'posReward', title: 'PoS Reward' },
+         * { key: 'masternodeAddress', title: 'MN Address' },
+         * { key: 'masternodeReward', title: 'MN Reward' },
+         */
       ]
     };
   };
 
   getRewardLink(reward) {
-    // By default go to the tx that was stake's input
+    /**
+     * By default go to the tx that was stake's input
+     */
     let txId = reward.stake.input.txId;
-    // In update, we now can go directly to reward tx
+    /**
+     * In update, we now can go directly to reward tx
+     */
     if (reward.txId) {
       txId = reward.txId;
     }
@@ -86,35 +91,34 @@ export default class CardRewards extends Component {
             {dateFormat(reward.date)} ({diffSeconds < 60 ? `${diffSeconds} seconds` : date.fromNow(true)})
           </Link>
         ),
-        // Optional columns we could enable:
-        /*
-        masternodeAddress: (
-          <Link to={`/block/${reward.blockHeight}`}>
-            {reward.masternode.address}
-          </Link>
-        ),*/
-        /*
-        posAddress: (
-          <Link to={`/block/${reward.blockHeight}`}>
-            {reward.stake.address}
-          </Link>
-        ),
-        masternodeReward: (
-          <Link to={`/block/${reward.blockHeight}`}>
-            {this.formatAmount(reward.masternode.reward)}
-          </Link>
-        ),
-        masternodeAddress: (
-          <Link to={`/block/${reward.blockHeight}`}>
-            {reward.masternode.address}
-          </Link>
-        ),
-        posReward: (
-          <Link to={`/block/${reward.blockHeight}`}>
-            {this.formatAmount(reward.stake.reward)}
-          </Link>
-        ),
-        */
+        /**
+         * Optional columns we could enable:
+         * masternodeAddress: (
+         *   <Link to={`/block/${reward.blockHeight}`}>
+         *      {reward.masternode.address}
+         *   </Link>
+         * ),
+         * posAddress: (
+         *   <Link to={`/block/${reward.blockHeight}`}>
+         *     {reward.stake.address}
+         *   </Link>
+         * ),
+         * masternodeReward: (
+         *   <Link to={`/block/${reward.blockHeight}`}>
+         *     {this.formatAmount(reward.masternode.reward)}
+         *   </Link>
+         * ),
+         * masternodeAddress: (
+         *   <Link to={`/block/${reward.blockHeight}`}>
+         *     {reward.masternode.address}
+         *   </Link>
+         * ),
+         * posReward: (
+         *   <Link to={`/block/${reward.blockHeight}`}>
+         *     {this.formatAmount(reward.stake.reward)}
+         *   </Link>
+         * ),
+         */
       });
     })
   }
