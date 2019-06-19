@@ -7,6 +7,8 @@ import moment from 'moment';
 
 import Icon from './Icon';
 
+import config from '../../config'
+
 /**
  * Will use material icons to render.
  * @param {Object} props The props with the name.
@@ -27,8 +29,7 @@ class Footer extends Component {
         <div className="footer__block">
           <img className="footer__logo" src="/img/footerlogo.svg" />
           <span className="footer__legal">
-            <div>Copyright &copy; 2019 <a href="https://galilel.org/">Galilel Cryptocurrency</a></div>
-            <div>Explorer Technology &copy; 2018 - 2019 <a href="https://bulwarkcrypto.com/">Bulwark Cryptocurrency</a></div>
+            <div>Copyright &copy; 2019 <a href={config.socialMedia.website}>Galilel Cryptocurrency</a></div>
           </span>
         </div>
         <div className="footer__block">
@@ -54,22 +55,22 @@ class Footer extends Component {
           <div className="footer__social-media-wrapper">
             <div className="footer__social-title">Social Media</div>
             <div>
-              <a href="https://bitcointalk.galilel.org" target="_blank">
+              <a href={config.socialMedia.bitcoinTalk} target="_blank">
                 <Icon name="bitcoin" className="fab footer__social-media-icon" />
               </a>
-              <a href="https://discord.galilel.org" target="_blank">
+              <a href={config.socialMedia.discord} target="_blank">
                 <Icon name="discord" className="fab footer__social-media-icon" />
               </a>
-              <a href="https://t.me/GalilelEN" target="_blank">
+              <a href={config.socialMedia.telegram} target="_blank">
                 <Icon name="telegram" className="fab footer__social-media-icon" />
               </a>
-              <a href="https://www.reddit.com/r/Galilel/" target="_blank">
+              <a href={config.socialMedia.reddit} target="_blank">
                 <Icon name="reddit" className="fab footer__social-media-icon" />
               </a>
-              <a href="https://github.com/Galilel-Project" target="_blank">
+              <a href={config.socialMedia.github} target="_blank">
                 <Icon name="github" className="fab footer__social-media-icon" />
               </a>
-              <a href="https://twitter.com/GalilelEN" target="_blank">
+              <a href={config.socialMedia.twitter} target="_blank">
                 <Icon name="twitter" className="fab footer__social-media-icon" />
               </a>
             </div>

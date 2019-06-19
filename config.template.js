@@ -53,7 +53,17 @@ const config = {
     'api': 'https://api.coinmarketcap.com/v1/ticker/',
     'ticker': 'galilel'
   },
-  
+  socialMedia: {
+    'website': 'https://galilel.org/',
+    'bitcoinTalk': 'https://bitcointalk.galilel.org',
+    'discord': 'https://discord.galilel.org',
+    'telegram': 'https://t.me/GalilelEN',
+    'reddit': 'https://www.reddit.com/r/Galilel/',
+    'github': 'https://github.com/Galilel-Project',
+    'twitter': 'https://twitter.com/GalilelEN',
+    'medium': 'https://medium.com/galilel'
+  },
+
   /**
    * Adjustable PoS Profitability Score - How profitable is your staking, tailored for your blockchain.
    */
