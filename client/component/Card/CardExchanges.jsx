@@ -2,15 +2,19 @@ import React from 'react';
 
 import Card from './Card';
 
-const CardExchanges = () => (
-  <Card title="Exchanges">
-    <a href="https://www.altilly.com/market/GALI_BTC" target="_blank">altilly</a><br />
-    <a href="https://bastionex.com/" target="_blank">Bastion</a><br />
-    <a href="https://blocknet.co/" target="_blank">Blocknet</a><br />
-    <a href="https://crypto-bridge.org/" target="_blank">CryptoBridge</a><br />
-    <a href="https://novaexchange.com/market/BTC_GALI/" target="_blank">NovaExchange</a><br />
-    <a href="https://txbit.io/Trade/GALI/BTC" target="_blank">Txbit.io</a><br />
-  </Card>
-);
+import config from '../../../config'
+
+const CardExchanges = () => {
+
+  return (
+    <Card title="Exchanges">
+      {config.exchanges.map((exchange) => (
+        <React.Fragment>
+          <a href={exchange.link} target="_blank">{exchange.title}</a><br />
+        </React.Fragment>
+      ))}
+    </Card>
+  );
+};
 
 export default CardExchanges;

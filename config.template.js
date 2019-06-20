@@ -53,6 +53,10 @@ const config = {
     'api': 'https://api.coinmarketcap.com/v1/ticker/',
     'ticker': 'galilel'
   },
+
+  /**
+   * All links to website and social media.
+   */
   socialMedia: {
     'website': 'https://galilel.org/',
     'bitcoinTalk': 'https://bitcointalk.galilel.org',
@@ -63,6 +67,48 @@ const config = {
     'twitter': 'https://twitter.com/GalilelEN',
     'medium': 'https://medium.com/galilel'
   },
+
+  /**
+   * All exchange links.
+   */
+  exchanges: [
+    {
+      'title': 'Graviex',
+      'link': 'https://graviex.net/markets/galibtc'
+    },
+    {
+      'title': 'Crex24',
+      'link': 'https://crex24.com/exchange/GALI-BTC'
+    },
+    {
+      'title': 'Aiodex',
+      'link': 'https://aiodex.com/exchange/GALI_BTC'
+    },
+    {
+      'title': 'CRATEX',
+      'link': 'https://cratex.io/index.php?pair=GALI/BTC'
+    },
+    {
+      'title': 'Raisex',
+      'link': 'https://raisex.io/trade/GALI_BTC'
+    },
+    {
+      'title': 'MCT+',
+      'link': 'https://trade.mct.plus/'
+    },
+    {
+      'title': 'FINEXBOX',
+      'link': 'https://www.finexbox.com/market/pair/GALI-BTC.html'
+    },
+    {
+      'title': 'Block DX',
+      'link': 'https://blocknet.co/galilel-2/about/'
+    },
+    {
+      'title': 'Bisq',
+      'link': 'https://bisq.network/markets/?currency=gali_btc'
+    }
+  ],
 
   /**
    * Adjustable PoS Profitability Score - How profitable is your staking, tailored for your blockchain.
