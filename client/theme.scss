@@ -1,16 +1,13 @@
 /**
- * Variables
+ * Colors
  */
 $black: #151515;
 $blue: rgba(41, 77, 234, 1);
-$blue-dark: #595ff5;
-$blue-light: #2ba2f8;
 $gray: #adadad;
 $gray-dark: #354052;
 $gray-light: #e8e8e8;
 $green: #61d75e;
 $red: #ed1c24;
-$orange: #f7981c;
 $white: #ffffff;
 $white-light: rgba(255,255,255,.5);
 
@@ -23,62 +20,9 @@ $margin-lg: 1.5rem;
 /**
  * Menu
  */
-$menu-gradient-main: #295af5;
-$menu-gradient-secondary: #595ff5;
 $menu-width-open: 240px;
 $menu-width-close: 110px;
 $menu-mobile-height: 70px;
-
-/**
- * Bootstrap override
- */
-$card-border-width: 0;
-$hr-margin-y: 0;
-$paragraph-margin-bottom: 0;
-
-$table-border-width: 0;
-$table-cell-padding: 0;
-
-$container-large-desktop: 1170px;
-
-/**
- * Badges
- */
-$badge-font-size: 1em;
-$badge-font-weight: bold;
-$badge-padding-y: .25em;
-$badge-padding-x: 1em;
-$badge-border-radius: 10px;
-$badge-pill-padding-x: .6em;
-$badge-pill-border-radius: 10rem;
-
-/**
- * Pagination
- */
-$pagination-padding-y: 8px;
-$pagination-padding-x: 12px;
-$pagination-padding-y-sm: 8px;
-$pagination-padding-x-sm: 12px;
-$pagination-padding-y-lg: 8px;
-$pagination-padding-x-lg: 12px;
-$pagination-line-height: 1;
-
-$pagination-color: $gray;
-$pagination-bg: $white;
-$pagination-border-width: 1px;
-$pagination-border-color: $gray;
-
-$pagination-hover-color: $blue;
-$pagination-hover-bg: $white;
-$pagination-hover-border-color: $blue;
-
-$pagination-active-color: $black;
-$pagination-active-bg: $white;
-$pagination-active-border-color: $gray-light;
-
-$pagination-disabled-color: $gray;
-$pagination-disabled-bg: $gray-light;
-$pagination-disabled-border-color: $gray;
 
 @import "~bootstrap/scss/bootstrap.scss";
 @import "./sass/font";
