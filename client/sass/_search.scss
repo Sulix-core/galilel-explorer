@@ -1,16 +1,16 @@
 .search {
   position: relative;
   width: 100%;
+  display: flex !important;
+  align-items: center;
 
   &:hover {
   }
 
   &__icon {
     position: absolute;
-    left: 1em;
-    margin-right: 1em;
+    left: 16px;
     opacity: .5;
-    top: calc(50% - .5em);
   }
 
   &__input {
