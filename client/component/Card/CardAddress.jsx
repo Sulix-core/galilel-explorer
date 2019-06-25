@@ -38,7 +38,13 @@ export default class CardAddress extends Component {
 
   drawQRCode = () => {
     const el = document.getElementById('qr-code');
-    qrcode.toCanvas(el, this.props.address, { width: 220 }, (err) => {
+    qrcode.toCanvas(el, this.props.address, {
+      width: 220,
+      margin: 0,
+      color: {
+        light: '#ededed'
+      }
+    }, (err) => {
       if (err) {
         console.log(err);
       }
