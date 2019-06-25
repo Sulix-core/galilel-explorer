@@ -29,7 +29,7 @@ export default class MenuDesktop extends Component {
 
     return props.links.map((i, idx) => {
       const isActive = (props.location.pathname === i.href);
-      const iconSource = i.icon.split('.svg')[0] + '_white.svg';
+      const iconSource = i.icon.split('_mobile.svg')[0] + '_desktop.svg';
 
       return (
         <Link
