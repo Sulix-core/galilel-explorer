@@ -1,24 +1,24 @@
 button {
-  background-color: $blue;
-  border: 1px solid $blue;
+  background-color: $dark-brown-1;
+  border: 1px solid $dark-brown-1;
   border-radius: 3px;
-  color: $white;
+  color: $grey-10-black;
   cursor: pointer;
   margin: 7px 4px 2px 4px;
   padding: 4px 16px;
 
   &:focus,
   &:hover {
-    background-color: darken($blue, 10%);
+    background-color: darken($dark-brown-1, 10%);
   }
 }
 
 input, select {
-  background-color: $white;
-  border: 1px solid $gray-light;
+  background-color: $light-brown-3;
+  border: 1px solid $light-brown-3;
   border-radius: 1px;
   box-sizing: border-box;
-  color: #3e515b;
+  color: $grey-85-black;
   display: inline-block;
   font-size: 14px;
   height: 33px;
@@ -26,12 +26,12 @@ input, select {
   padding: 12px 20px;
 
   &::placeholder {
-    color: #3e515b;
+    color: $grey-85-black;
   }
 
   &:focus,
   &:hover {
-    border-color: $blue;
-    color: $black;
+    border-color: $grey-85-black;
+    color: $grey-85-black;
   }
 }

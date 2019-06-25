@@ -3,8 +3,8 @@
  */
 .footer {
   display: flex;
-  background-color: $white;
-  border-top: 1px solid rgba(34, 34, 34, 0.1);
+  background-color: $light-brown-3;
+  border-top: 1px solid darken($light-brown-3, 10%);
   bottom: 0;
   flex-wrap: wrap;
   font-size: .8em;
@@ -62,14 +62,14 @@
   }
 
   &__social-media-icon {
-    color: $gray;
+    color: $dark-brown-1;
     font-size: 2em;
     margin-right: .5em;
     text-align: center;
 
     &:hover,
     &:focus {
-      color: initial;
+      color: darken($dark-brown-1, 10%);
     }
   }
 

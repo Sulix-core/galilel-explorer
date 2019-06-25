@@ -1,7 +1,7 @@
 .menu-desktop {
-  background: rgb(41, 77, 234);
-  box-shadow: #7d7d7d 0px 0px 16px;
-  color: $white;
+  background: $dark-brown-1;
+  box-shadow: $light-brown-1 0px 0px 16px;
+  color: $grey-10-black;
   float: left;
   font-weight: lighter;
   height: 100%;
@@ -89,7 +89,7 @@
   &__item {
     display: flex;
     align-items: center;
-    color: $white;
+    color: $light-brown-3;
     line-height: 1;
     margin: 0;
     padding: 0;
@@ -97,7 +97,7 @@
     transition: all 1s cubic-bezier(0, 1, .5, 1);
 
     &:hover {
-      color: $white;
+      color: $light-brown-3;
       text-decoration: none;
     }
   }
@@ -142,7 +142,7 @@
     position: relative;
 
     &:hover {
-      color: $white;
+      color: $light-brown-3;
       text-decoration: none;
     }
   }
@@ -204,14 +204,14 @@
   }
 
   a, a:visited {
-    color: $white;
+    color: $light-brown-3;
     font-family: $fontSmall;
     font-size: 18px;
     transition: all 1s cubic-bezier(0, 1, .5, 1);
   }
 
   a:hover {
-    color: $gray-light;
+    color: $light-brown-1;
     transition: all 1s cubic-bezier(0, 1, .5, 1);
   }
 }

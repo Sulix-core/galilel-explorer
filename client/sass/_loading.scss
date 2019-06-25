@@ -2,7 +2,7 @@
   width: 24px;
   height: 24px;
   background-color: transparent;
-  box-shadow: inset 0px 0px 0px 2px $gray-dark;
+  box-shadow: inset 0px 0px 0px 2px $grey-85-black;
   border-radius: 50%;
   position: absolute;
   top: 50%;
@@ -19,7 +19,7 @@
   position: absolute;
   content: "";
   border-radius: 10px;
-  background-color: $gray-dark;
+  background-color: $grey-85-black;
 }
 
 .timer:after {

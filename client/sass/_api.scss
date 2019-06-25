@@ -1,5 +1,5 @@
 .api {
-  $detail-background-color: #323d50;
+  $detail-background-color: $dark-brown-1;
 
   /**
    * @include media-breakpoint-up(md) {
@@ -33,7 +33,7 @@
   }
 
   &__section-sub-heading {
-    color: $gray;
+    color: $grey-85-black;
   }
 
   &__call {
@@ -41,7 +41,7 @@
     position: relative;
 
     &:hover {
-      color: $blue;
+      color: $dark-brown-1;
     }
   }
 
@@ -50,7 +50,7 @@
   }
 
   &__call-detail {
-    color: $white;
+    color: $light-brown-3;
     cursor: pointer;
     position: absolute;
     right: -95%;
@@ -64,13 +64,13 @@
     }
 
     &:hover {
-      color: $gray;
+      color: $grey-35-black;
     }
   }
 
   &__call-detail-indicator {
     display: none;
-    color: $white;
+    color: $light-brown-3;
     position: absolute;
     top: .13em;
     right: -32px;

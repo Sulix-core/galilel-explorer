@@ -10,9 +10,9 @@
 
   &__item {
     align-items: center;
-    background-color: $blue;
+    background-color: $dark-brown-1;
     border-radius: 15px;
-    color: $white;
+    color: $light-brown-3;
     font-size: .75em;
     margin: .5em 0;
     padding: .5em;
@@ -26,11 +26,11 @@
   }
 
   &__item:nth-child(odd) {
-    background-color: $blue;
+    background-color: $dark-brown-1;
   }
 
   &__item-close {
-    color: $white;
+    color: $light-brown-3;
     cursor: pointer;
     font-size: 1.75em;
     margin-right: .25em;
@@ -38,7 +38,7 @@
   }
 
   &__item-text {
-    color: $white;
+    color: $light-brown-3;
     cursor: pointer;
     font-family: $fontLarge;
     font-size: 1.25em;
