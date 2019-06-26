@@ -27,12 +27,6 @@ class Footer extends Component {
     return (
       <div className="footer">
         <div className="footer__block">
-          <img className="footer__logo" src="/img/footerlogo.svg" />
-          <span className="footer__legal">
-            <div>Copyright &copy; 2019 <a href={config.socialMedia.website}>Galilel Cryptocurrency</a></div>
-          </span>
-        </div>
-        <div className="footer__block">
           <div className="footer__data-wrapper">
             <div className="footer__data-block">
               <p className="footer__data-title">Status</p>

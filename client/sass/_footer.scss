@@ -23,12 +23,6 @@
     margin: 1em 0;
   }
 
-  &__logo {
-    display: inline-block;
-    height: 60px;
-    margin-right: 1em;
-  }
-
   &__data-wrapper {
     display: flex;
     flex-direction: row;
@@ -43,11 +37,6 @@
 
   &__data-title {
     text-transform: uppercase;
-  }
-
-  &__legal {
-    font-size: .9em;
-    line-height: 2;
   }
 
   &__social-title {
