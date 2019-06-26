@@ -27,9 +27,8 @@ const TransactionValue = (tx, blockValue) => {
 
   if (tx.isReward) {
     return (
-      <span title={getTransactionTitle(tx)}>
+      <span className={`badge badge-${blockValue < 0 ? 'danger-monospace' : 'success-monospace'}`} title={getTransactionTitle(tx)}>
         {formattedBlockValue}
-        <Icon name="gem" className="far pl-1 text-primary align-middle" />
       </span>
     );
   }

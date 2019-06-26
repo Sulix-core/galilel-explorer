@@ -8,6 +8,7 @@ import React from 'react';
 
 import HorizontalRule from '../component/HorizontalRule';
 import Table from '../component/Table';
+import config from '../../config'
 
 class Top100 extends Component {
   static defaultProps = {
@@ -44,12 +45,28 @@ class Top100 extends Component {
           cols={this.state.cols}
           data={this.state.wallets.map((wallet, idx) => ({
             ...wallet,
-            address: (
-              <Link to={ `/address/${ wallet.address }` }>{wallet.address}</Link>
+            index: (
+              <Link to={`/address/${wallet.address}`}>
+                {idx + 1}
+              </Link>
             ),
-            index: idx + 1,
-            percent: numeral((wallet.value / this.props.coin.supply) * 100.0).format('0,0.00'),
-            value: numeral(wallet.value).format('0,0.0000')
+            address: (
+              <Link to={`/address/${wallet.address}`}>
+                {wallet.address}
+              </Link>
+            ),
+            value: (
+              <Link to={`/address/${wallet.address}`}>
+                <span className={`badge badge-${wallet.value < 0 ? 'danger-monospace' : 'success-monospace'}`}>
+                  {numeral(wallet.value).format(config.coinDetails.coinNumberFormat)}
+                </span>
+              </Link>
+            ),
+            percent: (
+              <Link to={`/address/${wallet.address}`}>
+                {numeral((wallet.value / this.props.coin.supply) * 100.0).format('0,0.00')}
+              </Link>
+            )
           }))} />
       </div>
     );

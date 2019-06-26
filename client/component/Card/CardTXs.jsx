@@ -12,13 +12,11 @@ import TransactionValue from '../../component/Table/TransactionValue';
 
 export default class CardTXs extends Component {
   static defaultProps = {
-    txs: [],
-    addBadgeClassToValue: true
+    txs: []
   };
 
   static propTypes = {
-    txs: PropTypes.array.isRequired,
-    addBadgeClassToValue: PropTypes.bool
+    txs: PropTypes.array.isRequired
   };
 
   constructor(props) {
@@ -28,8 +26,7 @@ export default class CardTXs extends Component {
         { key: 'blockHeight', title: 'Height' },
         { key: 'txId', title: 'Transaction Hash' },
         { key: 'vout', title: 'Value' },
-        { key: 'inputs', title: 'Inputs' },
-        { key: 'outputs', title: 'Outputs' },
+        { key: 'age', title: 'Age' },
         { key: 'createdAt', title: 'Created' },
       ]
     };
@@ -46,10 +43,6 @@ export default class CardTXs extends Component {
           if (tx.vout && tx.vout.length) {
             tx.vout.forEach(vout => blockValue += vout.value);
           }
-          let spanClassName = ``;
-          if (this.props.addBadgeClassToValue) {
-            spanClassName = `badge badge-${blockValue < 0 ? 'danger' : 'success'}`;
-          }
 
           return ({
             ...tx,
@@ -64,25 +57,18 @@ export default class CardTXs extends Component {
               </Link>
             ),
             vout: (
-              <span className={spanClassName}>
-                <Link to={`/tx/${tx.txId}`}>
-                  {TransactionValue(tx, blockValue)}
-                </Link>
-              </span>
-            ),
-            inputs: (
               <Link to={`/tx/${tx.txId}`}>
-                {tx.vin.length}
+                {TransactionValue(tx, blockValue)}
               </Link>
             ),
-            outputs: (
+            age: (
               <Link to={`/tx/${tx.txId}`}>
-                {tx.vout.length}
+                {diffSeconds < 60 ? `${diffSeconds} seconds` : createdAt.fromNow(true)}
               </Link>
             ),
             createdAt: (
               <Link to={`/tx/${tx.txId}`} className="text-nowrap">
-                {dateFormat(tx.createdAt)} ({diffSeconds < 60 ? `${diffSeconds} seconds` : createdAt.fromNow(true)})
+                {dateFormat(tx.createdAt)}
               </Link>
             ),
           });

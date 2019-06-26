@@ -10,17 +10,14 @@ import Icon from '../Icon'
 
 import Table from '../Table';
 import PosProfitabilityScore from '../PosProfitabilityScore';
-import PosRestakeIndicator from '../FormattedValues/PosRestakeIndicator'
 
 export default class CardRewards extends Component {
   static defaultProps = {
-    rewards: [],
-    addBadgeClassToValue: true
+    rewards: []
   };
 
   static propTypes = {
-    rewards: PropTypes.array.isRequired,
-    addBadgeClassToValue: PropTypes.bool
+    rewards: PropTypes.array.isRequired
   };
 
   constructor(props) {
@@ -29,26 +26,24 @@ export default class CardRewards extends Component {
     this.state = {
       cols: [
         { key: 'blockHeight', title: 'Block #' },
-        { key: 'posInputSize', title: 'Input Size' },
-        { key: 'posInputConfirmations', title: 'Confirmations' },
-        { key: 'computedProfitabilityScore', title: 'PoS Profitability Score' },
+        { key: 'posAddress', title: 'PoS Address' },
+        { key: 'posReward', title: 'PoS Reward' },
+        { key: 'computedProfitabilityScore', title: 'PoS Score' },
+        { key: 'masternodeAddress', title: 'MN Address' },
+        { key: 'masternodeReward', title: 'MN Reward' },
+        { key: 'age', title: 'Age' },
         { key: 'date', title: 'Created' },
-
-        /**
-         * Optional columns we could enable:
-         * { key: 'posReward', title: 'PoS Reward' },
-         * { key: 'masternodeAddress', title: 'MN Address' },
-         * { key: 'masternodeReward', title: 'MN Reward' },
-         */
       ]
     };
   };
 
   getRewardLink(reward) {
+
     /**
      * By default go to the tx that was stake's input
      */
     let txId = reward.stake.input.txId;
+
     /**
      * In update, we now can go directly to reward tx
      */
@@ -67,18 +62,20 @@ export default class CardRewards extends Component {
       return ({
         ...reward,
         blockHeight: (
-          <Link to={this.getRewardLink(reward)}>
+          <Link to={`/block/${reward.blockHeight}`}>
             {reward.blockHeight}
           </Link>
         ),
-        posInputSize: (
-          <Link to={this.getRewardLink(reward)}>
-            <PosRestakeIndicator reward={reward} />
+        posAddress: (
+          <Link to={`/address/${reward.stake.address}`}>
+            {`${reward.stake.address.substr(0, 10)}...`}
           </Link>
         ),
-        posInputConfirmations: (
+        posReward: (
           <Link to={this.getRewardLink(reward)}>
-            {reward.stake.input.confirmations}
+            <span className={`badge badge-${reward.stake.reward < 0 ? 'danger-monospace' : 'success-monospace'}`}>
+              {numeral(reward.stake.reward).format(config.coinDetails.coinNumberFormat)}
+            </span>
           </Link>
         ),
         computedProfitabilityScore: (
@@ -86,39 +83,28 @@ export default class CardRewards extends Component {
             <PosProfitabilityScore reward={reward} />
           </Link>
         ),
-        date: (
-          <Link to={this.getRewardLink(reward)} className="text-nowrap">
-            {dateFormat(reward.date)} ({diffSeconds < 60 ? `${diffSeconds} seconds` : date.fromNow(true)})
+        masternodeAddress: (
+          <Link to={`/address/${reward.masternode.address}`}>
+             {`${reward.masternode.address.substr(0, 10)}...`}
           </Link>
         ),
-        /**
-         * Optional columns we could enable:
-         * masternodeAddress: (
-         *   <Link to={`/block/${reward.blockHeight}`}>
-         *      {reward.masternode.address}
-         *   </Link>
-         * ),
-         * posAddress: (
-         *   <Link to={`/block/${reward.blockHeight}`}>
-         *     {reward.stake.address}
-         *   </Link>
-         * ),
-         * masternodeReward: (
-         *   <Link to={`/block/${reward.blockHeight}`}>
-         *     {this.formatAmount(reward.masternode.reward)}
-         *   </Link>
-         * ),
-         * masternodeAddress: (
-         *   <Link to={`/block/${reward.blockHeight}`}>
-         *     {reward.masternode.address}
-         *   </Link>
-         * ),
-         * posReward: (
-         *   <Link to={`/block/${reward.blockHeight}`}>
-         *     {this.formatAmount(reward.stake.reward)}
-         *   </Link>
-         * ),
-         */
+        masternodeReward: (
+          <Link to={this.getRewardLink(reward)}>
+            <span className={`badge badge-${reward.masternode.reward < 0 ? 'danger-monospace' : 'success-monospace'}`}>
+              {numeral(reward.masternode.reward).format(config.coinDetails.coinNumberFormat)}
+            </span>
+          </Link>
+        ),
+        age: (
+          <Link to={this.getRewardLink(reward)}>
+            {diffSeconds < 60 ? `${diffSeconds} seconds` : date.fromNow(true)}
+          </Link>
+        ),
+        date: (
+          <Link to={this.getRewardLink(reward)} className="text-nowrap">
+            {dateFormat(reward.date)}
+          </Link>
+        ),
       });
     })
   }

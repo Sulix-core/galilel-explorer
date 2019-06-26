@@ -22,12 +22,11 @@ class Overview extends Component {
 
     this.state = {
       cols: [
-        {title: 'Height', key: 'blockHeight'},
-        {title: 'Transaction Hash', key: 'txId'},
-        {title: 'Value', key: 'vout'},
-        {title: 'Inputs', key: 'inputs'},
-        {title: 'Outputs', key: 'outputs'},
-        {title: 'Created', key: 'createdAt'},
+        { key: 'blockHeight', title: 'Height' },
+        { key: 'txId', title: 'Transaction Hash' },
+        { key: 'vout', title: 'Value' },
+        { key: 'age', title: 'Age' },
+        { key: 'createdAt', title: 'Created' },
       ]
     };
   };
@@ -62,19 +61,14 @@ class Overview extends Component {
             {TransactionValue(tx, blockValue)}
           </Link>
         ),
-        inputs: (
+        age: (
           <Link to={`/tx/${tx.txId}`}>
-            {tx.vin.length}
-          </Link>
-        ),
-        outputs: (
-          <Link to={`/tx/${tx.txId}`}>
-            {tx.vout.length}
+            {diffSeconds < 60 ? `${diffSeconds} seconds` : createdAt.fromNow(true)}
           </Link>
         ),
         createdAt: (
           <Link to={`/tx/${tx.txId}`} className="text-nowrap">
-            {dateFormat(tx.createdAt)} ({diffSeconds < 60 ? `${diffSeconds} seconds` : createdAt.fromNow(true)})
+            {dateFormat(tx.createdAt)}
           </Link>
         ),
       });
