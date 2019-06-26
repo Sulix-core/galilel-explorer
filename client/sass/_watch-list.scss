@@ -18,7 +18,7 @@
     padding: .5em;
     text-transform: uppercase;
 
-    display: block;
+    display: flex;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -34,7 +34,7 @@
     cursor: pointer;
     font-size: 1.75em;
     margin-right: .25em;
-    position: absolute;
+    position: relative;
   }
 
   &__item-text {
@@ -46,14 +46,13 @@
     font-style: normal;
     font-stretch: normal;
     letter-spacing: normal;
-    margin-left: 1.75em;
     text-align: left;
 
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 85%;
+    width: 70%;
 
     text-rendering: auto;
     text-shadow: none;
