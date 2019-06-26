@@ -38,16 +38,24 @@ class CoinInfo extends Component {
         <HorizontalRule title="Coin Info" />
         <div className="row">
           <div className="col-md-12 col-lg-8">
-            <div>
-              <img className="img-fluid" src="/img/largelogo.svg" />
-            </div>
             <div className="row">
               <div className="col-sm-12 col-md-3">
-                <CardLinks />
-                <CardExchanges />
+                <div className="row">
+                  <div className="col-sm-12 col-md-12">
+                    <CardLinks />
+                  </div>
+                <div className="row">
+                </div>
+                  <div className="col-sm-12 col-md-12">
+                    <CardExchanges />
+                  </div>
+                </div>
               </div>
               <div className="col-sm-12 col-md-9">
                 <CardEarnings coin={this.props.coin} />
+                <div className="d-none d-md-block">
+                  <img className="img-fluid" src="/img/largelogo.svg" />
+                </div>
               </div>
             </div>
           </div>
