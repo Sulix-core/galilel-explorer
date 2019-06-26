@@ -1,10 +1,10 @@
-
 import Component from '../../core/Component';
 import { dateFormat } from '../../../lib/date';
 import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import qrcode from 'qrcode';
 import React from 'react';
+import config from '../../../config'
 
 export default class CardAddress extends Component {
   static defaultProps = {
@@ -69,24 +69,24 @@ export default class CardAddress extends Component {
               <span className="card__label">
                 Sent:
               </span>
-              <span className="card__result">
-                -{ numeral(this.props.received - this.props.balance).format('0,0.0000') } GALI
+              <span className="card__monospace">
+                -{ numeral(this.props.received - this.props.balance).format(config.coinDetails.coinNumberFormat) } { config.coinDetails.shortName }
               </span>
             </div>
             <div className="card__row">
               <span className="card__label">
                 Received:
               </span>
-              <span className="card__result">
-                +{ numeral(this.props.received).format('0,0.0000') } GALI
+              <span className="card__monospace">
+                +{ numeral(this.props.received).format(config.coinDetails.coinNumberFormat) } { config.coinDetails.shortName }
               </span>
             </div>
             <div className="card__row">
               <span className="card__label">
                 Balance:
               </span>
-              <span className="card__result">
-                { numeral(this.props.balance).format('0,0.0000') } GALI
+              <span className="card__monospace">
+                &nbsp;{ numeral(this.props.balance).format(config.coinDetails.coinNumberFormat) } { config.coinDetails.shortName }
               </span>
             </div>
           </div>

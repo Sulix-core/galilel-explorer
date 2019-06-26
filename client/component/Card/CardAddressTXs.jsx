@@ -1,4 +1,3 @@
-
 import Component from '../../core/Component';
 import { dateFormat } from '../../../lib/date';
 import { Link } from 'react-router-dom';
@@ -7,6 +6,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Table from '../Table';
+import config from '../../../config'
 
 export default class CardAddressTXs extends Component {
   static defaultProps = {
@@ -55,8 +55,8 @@ export default class CardAddressTXs extends Component {
             ...tx,
             amount: (
               <span
-                className={ `badge badge-${ isSpent ? 'danger' : 'success' }` }>
-                { isSpent ? '-' : ''}{ numeral(amount).format('0,0.0000') } GALI
+                className={ `badge badge-${ isSpent ? 'danger-monospace' : 'success-monospace' }` }>
+                { isSpent ? '-' : ''}{ numeral(amount).format(config.coinDetails.coinNumberFormat) } { config.coinDetails.shortName }
               </span>
             ),
             createdAt: (

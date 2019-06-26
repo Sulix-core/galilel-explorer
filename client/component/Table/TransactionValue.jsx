@@ -8,7 +8,7 @@ import config from '../../../config'
  * @todo move to FormattedValues folder
  */
 const TransactionValue = (tx, blockValue) => {
-  const formattedBlockValue = (numeral(blockValue).format('0,0.0000'));
+  const formattedBlockValue = (numeral(blockValue).format(config.coinDetails.coinNumberFormat));
 
   const getTransactionTitle = (tx) => {
     let blockRewardTitle = 'Block Reward for PoS & Masternode';

@@ -1,4 +1,3 @@
-
 import Component from '../../core/Component';
 import numeral from 'numeral';
 import PropTypes from 'prop-types';
@@ -8,6 +7,7 @@ import Card from './Card';
 import CountUp from '../CountUp';
 import GraphLine from '../Graph/GraphLine';
 import Icon from '../Icon';
+import config from '../../../config'
 
 export default class CardStatus extends Component {
   static defaultProps = {
@@ -44,7 +44,7 @@ export default class CardStatus extends Component {
             decimals={ 2 }
             duration={ 1 }
             end={ this.props.usd }
-            prefix={ 'GALI $' }
+            prefix={ config.coinDetails.shortName + ' $' }
             start={ 0 } />
         </p>
         <p className="card__data-sub">{ this.props.btc } BTC</p>

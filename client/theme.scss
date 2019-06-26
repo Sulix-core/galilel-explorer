@@ -151,7 +151,6 @@ hr {
   font-weight: bold;
   line-height: normal;
   letter-spacing: normal;
-  min-width: 60%;
   mix-blend-mode: undefined;
   padding: .2em .6em;
   text-align: center;
@@ -161,12 +160,26 @@ hr {
     color: $grey-10-black !important;
   }
 
-  &-info {
+  &-success {
     color: $grey-10-black !important;
   }
 
-  &-success {
+  &-danger-monospace {
     color: $grey-10-black !important;
+    font-family: monospace;
+    background-color: $red;
+    border-radius: 2px;
+    color: $light-brown-3;
+    padding: .2em .6em;
+  }
+
+  &-success-monospace {
+    color: $grey-10-black !important;
+    font-family: monospace;
+    background-color: $green;
+    border-radius: 2px;
+    color: $black;
+    padding: .2em .6em;
   }
 }
 
