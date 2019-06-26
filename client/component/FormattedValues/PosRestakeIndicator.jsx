@@ -9,12 +9,6 @@ import config from '../../../config'
  */
 const PosRestakeIndicator = ({ reward, includeShortName = false }) => {
 
-  const getRestakeIcon = (reward) => {
-    if (!reward.stake.input.isRestake) {
-      return null;
-    }
-    return <Icon name="recycle" className="fas pl-1 text-primary align-middle" />;
-  }
   const getTitle = (reward) => {
     if (!reward.stake.input.isRestake) {
       return null;
@@ -34,7 +28,7 @@ const PosRestakeIndicator = ({ reward, includeShortName = false }) => {
 
   return (
     <span title={getTitle(reward)}>
-      {formatAmount(reward.stake.input.value)}{getRestakeIcon(reward)}
+      {formatAmount(reward.stake.input.value)}
     </span>
   );
 }
