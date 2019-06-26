@@ -86,7 +86,7 @@ class Movement extends Component {
         <HorizontalRule
           select={select}
           title="Movement" />
-        <CardTXs txs={this.state.txs} addBadgeClassToValue={false} />
+        <CardTXs txs={this.state.txs} />
         <Pagination
           current={this.state.page}
           className="float-right"

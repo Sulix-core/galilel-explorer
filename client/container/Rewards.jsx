@@ -90,7 +90,7 @@ class Rewards extends Component {
         <HorizontalRule
           select={select}
           title="Rewards" />
-        <CardRewards rewards={this.state.rewards} addBadgeClassToValue={false} />
+        <CardRewards rewards={this.state.rewards} />
         <Pagination
           current={this.state.page}
           className="float-right"
