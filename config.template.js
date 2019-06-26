@@ -35,7 +35,8 @@ const config = {
   coinDetails: {
     name: 'Galilel',
     shortName: 'GALI',
-    coinNumberFormat: '0,0.0000'
+    coinNumberFormat: '0,0.0000',
+    coinNumberFormatFinance: '+0,0.0000'
   },
 
   /**

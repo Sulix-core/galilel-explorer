@@ -41,7 +41,7 @@ export default class CardTXOut extends Component {
           ),
           value: (
             <span className="badge badge-success-monospace">
-              {numeral(tx.value).format(config.coinDetails.coinNumberFormat)} {config.coinDetails.shortName}
+              {numeral(tx.value).format(config.coinDetails.coinNumberFormatFinance)} {config.coinDetails.shortName}
             </span>
           )
         }))} />

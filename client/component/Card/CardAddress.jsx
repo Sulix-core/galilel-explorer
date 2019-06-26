@@ -70,7 +70,7 @@ export default class CardAddress extends Component {
                 Sent:
               </span>
               <span className="card__monospace">
-                -{ numeral(this.props.received - this.props.balance).format(config.coinDetails.coinNumberFormat) } { config.coinDetails.shortName }
+                { numeral(this.props.balance - this.props.received).format(config.coinDetails.coinNumberFormatFinance) } { config.coinDetails.shortName }
               </span>
             </div>
             <div className="card__row">
@@ -78,7 +78,7 @@ export default class CardAddress extends Component {
                 Received:
               </span>
               <span className="card__monospace">
-                +{ numeral(this.props.received).format(config.coinDetails.coinNumberFormat) } { config.coinDetails.shortName }
+                { numeral(this.props.received).format(config.coinDetails.coinNumberFormatFinance) } { config.coinDetails.shortName }
               </span>
             </div>
             <div className="card__row">
