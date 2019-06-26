@@ -32,6 +32,16 @@ const config = {
    * If set to true there are extra logging details in cron scripts.
    */
   verboseCron: true,
+
+  /**
+   * If set to 0, cpu cores are detected and worker processes spawned accordignly.
+   * If set to > 0, limit the number of worker processes.
+   */
+  workers: 0,
+
+  /**
+   * Configure your coin details here.
+   */
   coinDetails: {
     name: 'Galilel',
     shortName: 'GALI',
