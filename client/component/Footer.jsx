@@ -31,7 +31,7 @@ class Footer extends Component {
             <div className="footer__data-block">
               <p className="footer__data-title">Status</p>
               <p>
-                <span className={`u__dot u--text-${statusColor}`}>&bull;</span>
+                <span className={`u__dot u--text-${statusColor}`}>&nbsp;</span>
                 <span>{coin.status}</span>
               </p>
             </div>
