@@ -116,12 +116,22 @@ hr {
   color: $grey-10-black;
   background-color: $dark-brown-3;
   border: 1px solid darken($dark-brown-3, 5%);
+  font-weight: bold;
+}
+
+.page-link:hover {
+  color: $dark-brown-1;
+}
+
+.page-link:focus {
+  box-shadow: unset;
 }
 
 .page-item.active .page-link {
   color: $grey-10-black;
   background-color: $dark-brown-1;
   border: 1px solid darken($dark-brown-3, 5%);
+  font-weight: bold;
 }
 
 .page-wrapper {
