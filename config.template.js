@@ -70,12 +70,15 @@ const config = {
    */
   socialMedia: {
     'website': 'https://galilel.org/',
-    'bitcoinTalk': 'https://bitcointalk.galilel.org',
     'discord': 'https://discord.galilel.org',
     'telegram': 'https://t.me/GalilelEN',
-    'reddit': 'https://www.reddit.com/r/Galilel/',
-    'github': 'https://github.com/Galilel-Project',
     'twitter': 'https://twitter.com/GalilelEN',
+    'bitcoinTalk': 'https://bitcointalk.galilel.org',
+    'facebook': 'https://facebook.com/GalilelEN',
+    'youtube': 'https://youtube.com/channel/UC26rKBciicXp33dK8NkALmg',
+    'github': 'https://github.com/Galilel-Project',
+    'instagram': 'https://instagram.com/galilel_en/',
+    'reddit': 'https://www.reddit.com/r/Galilel/',
     'medium': 'https://medium.com/galilel'
   },
 
