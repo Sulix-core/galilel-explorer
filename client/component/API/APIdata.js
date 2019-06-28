@@ -55,7 +55,7 @@ const APIdata = [
       },
       {
         name: 'getSupply',
-        info: 'Returns circulating and total supply information.<br />https://github.com/coincheckup/crypto-supplies',
+        info: 'Returns circulating and total supply information.',
         path: '/api/supply'
       },
       {

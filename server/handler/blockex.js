@@ -401,7 +401,6 @@ const getPeer = (req, res) => {
 
 /**
  * Get coin supply information for usage.
- * https://github.com/coincheckup/crypto-supplies
  * @param {Object} req The request object.
  * @param {Object} res The response object.
  */
@@ -411,12 +410,10 @@ const getSupply = async (req, res) => {
     let t = 0; // Total supply.
 
     let supply = await cache.getFromCache("supply", moment().utc().add(1, 'hours').unix(), async () => {
-      const utxo = await UTXO.aggregate([
-        { $group: { _id: 'supply', total: { $sum: '$value' } } }
-      ]);
+      const coin = await Coin.findOne().sort({ createdAt: -1 });
 
-      t = utxo[0].total;
-      c = t;
+      t = coin.supply;
+      c = t - ((coin.mnsOff + coin.mnsOn) * chain.mncoins);
 
       return { c, t };
     });
