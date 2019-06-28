@@ -6,7 +6,9 @@ const fetch = require('../lib/fetch');
 const locker = require('../lib/locker');
 const moment = require('moment');
 
-// Models.
+/**
+ * Models.
+ */
 const Coin = require('../model/coin');
 
 /**
@@ -15,7 +17,10 @@ const Coin = require('../model/coin');
  */
 async function syncCoin() {
   const date = moment().utc().startOf('minute').toDate();
-  // Setup the coinmarketcap.com api url.
+
+  /**
+   * Setup the coinmarketcap.com api url.
+   */
   const url = `${ config.coinMarketCap.api }${ config.coinMarketCap.ticker }`;
 
   const info = await rpc.call('getinfo');
@@ -38,7 +43,7 @@ async function syncCoin() {
     netHash: nethashps,
     peers: info.connections,
     status: 'Online',
-    supply: market.available_supply, // TODO: change to actual count from db.
+    supply: info.moneysupply,
     usd: market.price_usd
   });
 

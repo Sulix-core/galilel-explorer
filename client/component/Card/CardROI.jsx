@@ -32,7 +32,7 @@ const CardROI = ({ coin, supply }) => {
       </div>
       <div className="mb-3">
         <div className="h3">
-          { numeral(supply ? supply.t : 0.0).format(config.coinDetails.coinNumberFormat) } {config.coinDetails.shortName}
+          { numeral(coin.supply).format(config.coinDetails.coinNumberFormat) } {config.coinDetails.shortName}
         </div>
         <div className="h5">
           Coin Supply (Total)
@@ -40,7 +40,7 @@ const CardROI = ({ coin, supply }) => {
       </div>
       <div className="mb-3">
         <div className="h3">
-          { numeral(supply ? supply.c - (mns * mncoins) : 0.0).format(config.coinDetails.coinNumberFormat) } {config.coinDetails.shortName}
+          { numeral(coin.supply - (mns * mncoins)).format(config.coinDetails.coinNumberFormat) } {config.coinDetails.shortName}
         </div>
         <div className="h5">
           Coin Supply (Circulating)
@@ -48,7 +48,7 @@ const CardROI = ({ coin, supply }) => {
       </div>
       <div className="mb-3">
         <div className="h3">
-          { numeral(coin.cap * coin.btc).format('0,0.0000') } BTC
+          { numeral(coin.cap / (coin.usd / coin.btc)).format('0,0.0000') } BTC
         </div>
         <div className="h5">
           Market Cap BTC
