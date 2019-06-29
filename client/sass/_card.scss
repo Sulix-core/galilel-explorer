@@ -36,13 +36,6 @@
     text-overflow: ellipsis;
   }
 
-  &__monospace {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: monospace;
-    font-size: 90%;
-  }
-
   &__row {
     display: flex;
   }
