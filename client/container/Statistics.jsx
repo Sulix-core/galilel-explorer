@@ -144,7 +144,7 @@ class Statistics extends Component {
               <h5>Difficulty: {numeral(this.props.coin.diff).format('0,0.0000')}</h5>
               <div>
                 <GraphLineFull
-                  color="#1991eb"
+                  color="#795548"
                   data={Array.from(hashes.values()).slice(1, -1)}
                   height="420px"
                   labels={Array.from(hashes.keys()).slice(1, -1)} />
@@ -156,7 +156,7 @@ class Statistics extends Component {
               <h5>Average: {numeral(avgTX).format('0,0')} Per Hour</h5>
               <div>
                 <GraphLineFull
-                  color="#1991eb"
+                  color="#795548"
                   data={Array.from(txs.values())}
                   height="420px"
                   labels={Array.from(txs.keys())} />
@@ -170,7 +170,7 @@ class Statistics extends Component {
               <h5>{numeral(this.props.coin.btc).format('0.00000000')} BTC</h5>
               <div>
                 <GraphLineFull
-                  color="#1991eb"
+                  color="#795548"
                   data={Array.from(prices.values()).slice(1, -1)}
                   height="420px"
                   labels={Array.from(prices.keys()).slice(1, -1)} />
@@ -182,7 +182,7 @@ class Statistics extends Component {
               <h5>Seen: {this.props.coin.mnsOn + this.props.coin.mnsOff}</h5>
               <div>
                 <GraphLineFull
-                  color="#1991eb"
+                  color="#795548"
                   data={Array.from(mns.values()).slice(1, -1)}
                   height="420px"
                   labels={Array.from(mns.keys()).slice(1, -1)} />

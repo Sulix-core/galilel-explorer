@@ -6,7 +6,7 @@ import React from 'react';
 
 export default class GraphLine extends Component {
   static defaultProps = {
-    color: 'rgba(0,255,0,1)',
+    color: 'rgba(0, 255, 0, 1)',
     data: [],
     labels: []
   };
