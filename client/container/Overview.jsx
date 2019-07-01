@@ -58,7 +58,9 @@ class Overview extends Component {
         ),
         vout: (
           <Link to={`/tx/${tx.txId}`}>
-            {TransactionValue(tx, blockValue)}
+            <span className={`badge badge-${blockValue < 0 ? 'danger-monospace' : 'success-monospace'} badge-right`}>
+              {TransactionValue(tx, blockValue)}
+            </span>
           </Link>
         ),
         age: (

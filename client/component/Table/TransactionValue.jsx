@@ -26,11 +26,7 @@ const TransactionValue = (tx, blockValue) => {
   };
 
   if (tx.isReward) {
-    return (
-      <span className={`badge badge-${blockValue < 0 ? 'danger-monospace' : 'success-monospace'}`} title={getTransactionTitle(tx)}>
-        {formattedBlockValue}
-      </span>
-    );
+    return formattedBlockValue;
   }
 
   return formattedBlockValue;

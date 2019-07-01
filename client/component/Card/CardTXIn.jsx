@@ -74,7 +74,7 @@ export default class CardTXIn extends Component {
             : '',
           value: tx.relatedVout
             ? (
-                <span className="badge badge-danger-monospace">
+                <span className="badge badge-danger-monospace badge-right">
                 {numeral(-tx.relatedVout.value).format(config.coinDetails.coinNumberFormatFinance)} {config.coinDetails.shortName}
                 </span>
               )

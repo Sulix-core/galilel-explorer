@@ -40,7 +40,7 @@ export default class CardTXOut extends Component {
             <Link to={`/address/${ tx.address }`}>{ tx.address }</Link>
           ),
           value: (
-            <span className="badge badge-success-monospace">
+            <span className="badge badge-success-monospace badge-right">
               {numeral(tx.value).format(config.coinDetails.coinNumberFormatFinance)} {config.coinDetails.shortName}
             </span>
           )
