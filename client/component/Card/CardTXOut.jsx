@@ -33,7 +33,7 @@ export default class CardTXOut extends Component {
   render() {
     return (
       <Table
-        cols={this.state.cols}
+        header={this.state.cols}
         data={this.props.txs.map(tx => ({
           ...tx,
           address: (

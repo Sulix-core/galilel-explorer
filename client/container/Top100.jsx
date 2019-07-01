@@ -26,7 +26,9 @@ class Top100 extends Component {
       cols: [
         { key: 'index', title: '#' },
         { key: 'address', title: 'Address' },
-        { key: 'value', title: 'Total' },
+        { key: 'value', title: (
+          <span className="badge-right">Total</span>
+        )},
         { key: 'percent', title: '%' },
       ],
       wallets: []
@@ -42,7 +44,7 @@ class Top100 extends Component {
       <div>
         <HorizontalRule title="Top 100" />
         <Table
-          cols={this.state.cols}
+          header={this.state.cols}
           data={this.state.wallets.map((wallet, idx) => ({
             ...wallet,
             index: (

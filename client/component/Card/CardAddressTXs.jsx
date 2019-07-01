@@ -26,7 +26,9 @@ export default class CardAddressTXs extends Component {
     this.state = {
       cols: [
         { key: 'txId', title: 'Transaction ID' },
-        { key: 'amount', title: 'Amount' },
+        { key: 'amount', title: (
+          <span className="badge-right">Amount</span>
+        )},
         { key: 'createdAt', title: 'Time' },
       ]
     };
@@ -40,7 +42,7 @@ export default class CardAddressTXs extends Component {
     return (
       <div className="animated fadeIn">
       <Table
-        cols={ this.state.cols }
+        header={ this.state.cols }
         data={ this.props.txs.map((tx) => {
           let amount = 0.0;
           let isSpent = false;

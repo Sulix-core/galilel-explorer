@@ -24,7 +24,9 @@ class Overview extends Component {
       cols: [
         { key: 'blockHeight', title: 'Height' },
         { key: 'txId', title: 'Transaction Hash' },
-        { key: 'vout', title: 'Value' },
+        { key: 'vout', title: (
+          <span className="badge-right">Value</span>
+        )},
         { key: 'age', title: 'Age' },
         { key: 'createdAt', title: 'Created' },
       ]
@@ -80,7 +82,7 @@ class Overview extends Component {
       <div>
         <HorizontalRule title="Latest Blocks" />
         <Table
-          cols={this.state.cols}
+          header={this.state.cols}
           data={txs} />
       </div>
     );

@@ -25,7 +25,9 @@ export default class CardTXs extends Component {
       cols: [
         { key: 'blockHeight', title: 'Height' },
         { key: 'txId', title: 'Transaction Hash' },
-        { key: 'vout', title: 'Value' },
+        { key: 'vout', title: (
+          <span className="badge-right">Value</span>
+        )},
         { key: 'age', title: 'Age' },
         { key: 'createdAt', title: 'Created' },
       ]
@@ -35,7 +37,7 @@ export default class CardTXs extends Component {
   render() {
     return (
       <Table
-        cols={this.state.cols}
+        header={this.state.cols}
         data={this.props.txs.map(tx => {
           const createdAt = moment(tx.createdAt).utc();
           const diffSeconds = moment().utc().diff(createdAt, 'seconds');

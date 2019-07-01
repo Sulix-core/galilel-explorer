@@ -31,7 +31,7 @@ export default class CardBlockTXs extends Component {
     return (
       <div className="animated fadeIn">
       <Table
-        cols={ this.state.cols }
+        header={ this.state.cols }
         data={ this.props.txs.map(tx => ({
           ...tx,
           createdAt: dateFormat(tx.createdAt),

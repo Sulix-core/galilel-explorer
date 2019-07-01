@@ -41,7 +41,7 @@ class Peer extends Component {
       <div>
         <HorizontalRule title="Connections" />
         <Table
-          cols={this.state.cols}
+          header={this.state.cols}
           data={this.state.peers.map(peer => ({
             ...peer,
             ip: (

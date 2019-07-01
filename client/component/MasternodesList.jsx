@@ -140,7 +140,7 @@ class MasternodesList extends Component {
           select={getPaginationDropdown()}
           title={this.props.title} />
         <Table
-          cols={this.state.cols}
+          header={this.state.cols}
           data={sortBy(this.state.mns.map((mn) => {
             const lastPaidAt = moment(mn.lastPaidAt).utc();
             const isEpoch = lastPaidAt.unix() === 0;

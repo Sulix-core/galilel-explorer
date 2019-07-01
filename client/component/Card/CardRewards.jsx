@@ -112,7 +112,7 @@ export default class CardRewards extends Component {
   render() {
     return (
       <Table
-        cols={this.state.cols}
+        header={this.state.cols}
         data={this.getTableData()} />
     );
   };

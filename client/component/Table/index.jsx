@@ -5,17 +5,17 @@ import React from 'react';
 
 import { Table } from 'reactstrap';
 
-import TableHeader from './TableHeader';
-
 export default class TableWrapper extends Component {
   static defaultProps = {
     cols: [],
+    header: [],
     data: [],
     hasDivider: true,
   };
 
   static propTypes = {
     cols: PropTypes.array,
+    header: PropTypes.array,
     data: PropTypes.array,
     max: PropTypes.number,
     hasDivider: PropTypes.bool,
@@ -26,6 +26,26 @@ export default class TableWrapper extends Component {
 
   componentWillUnmount() {
   };
+
+  getHeader() {
+    const cells = this.props.header.map((col, idx) => {
+      if (typeof col === 'object') {
+        col = col.title;
+      }
+
+      return (
+        <th key={idx}>{col}</th>
+      )
+    });
+
+    return (
+      <thead>
+        <tr>
+          {cells}
+        </tr>
+      </thead>
+    );
+  }
 
   getBody() {
     const { data } = this.props;
@@ -53,9 +73,9 @@ export default class TableWrapper extends Component {
   }
 
   getKeys() {
-    const { cols } = this.props;
+    const { header } = this.props;
 
-    const keys = cols.map(col => {
+    const keys = header.map(col => {
       return (typeof col === 'object') ? col.key : col;
     })
 
@@ -73,7 +93,7 @@ export default class TableWrapper extends Component {
       <div className="table-wrapper">
         <div className="table-wrapper__shadow-margin">
           <Table className={ `${ this.props.hasDivider ? 'table--has-divider' : '' } ${ this.props.className || 'animated fadeIn' }` }>
-            <TableHeader cols={ props.cols } />
+            { this.getHeader() }
             { this.getBody() }
           </Table>
         </div>
