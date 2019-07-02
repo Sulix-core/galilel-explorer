@@ -24,7 +24,7 @@ export default class CardHighlightedAddresses extends Component {
         <div className="animated fadeIn" key={idx} onClick={ev => this.handleClick(ev, item)} >
           <div className="watch-list__item">           
             <div>
-              <div className="watch-list__item-text">
+              <div className="watch-list__item-text watch-list__item-text-community">
                 {item.label}
               </div>
             </div>

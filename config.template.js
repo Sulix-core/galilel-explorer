@@ -198,16 +198,8 @@ const config = {
    */
   community: {
     highlightedAddresses: [
-
-      /**
-       * Uncomment and replace with your coin address to highlight an address.
-       * { label: 'Community Donations', address: 'XXXXXXXXXXXXXXXXXXXXXXXXXXX' },
-       */
-
-      /**
-       * Uncomment and replace with your coin address to highlight any other address.
-       * { label: 'Community Funding', address: 'XXXXXXXXXXXXXXXXXXXXXXXXXXX' },
-       */
+      { label: 'Community Donations', address: 'UUr5nDmykhun1HWM7mJAqLVeLzoGtx19dX' },
+      { label: 'Development Budget', address: '7U3FMDhKv4j5bzauurPoX1TtqE7hPowSJi' },
     ]
   },
 
