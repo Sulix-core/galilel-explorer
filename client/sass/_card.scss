@@ -12,6 +12,7 @@
   box-shadow: 0 1px 3px lighten($grey-85-black, 15%);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   border-radius: 5px;
+  border: 0px;
 
   &:hover {
     box-shadow: 0 8px 14px lighten($grey-85-black, 20%), 0 4px 4px lighten($grey-85-black, 20%);
