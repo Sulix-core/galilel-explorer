@@ -49,18 +49,19 @@ yarn install
 
 ### API
 
-Setup initial configuration using template. Edit the `config.js` afterwards as
-needed.
+Setup initial configuration using template. Edit the `config.js` and
+`config_private.js` afterwards as needed.
 
 ```
 cp config.template.js config.js
+cp config_private.template.js config_private.js
 ```
 
 ### Database
 
 You need to prepare MongoDB to store the blockchain data into it. Therefore a
 database and a user with read and write permissions with the values stored in
-the `config.js` must be created.
+the `config_private.js` must be created.
 
 ```
 mongo
@@ -68,9 +69,6 @@ use galileldb
 db.createUser( { user: "galileluser", pwd: "galilelpassword", roles: [ "readWrite" ] } )
 exit
 ```
-
-You should not build the frontend using the same `config.js` file as created
-above or you *will leak* sensitive database information.
 
 ### Crontab
 
