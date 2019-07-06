@@ -53,7 +53,7 @@ Setup initial configuration using template. Edit the `config.js` and
 `config_private.js` afterwards as needed.
 
 ```
-cp config.template.js config.js
+cp config.template.js public/config.js
 cp config_private.template.js config_private.js
 ```
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import numeral from 'numeral';
 import Icon from '../Icon';
-import config from '../../../config'
 
 /**
  * Adds ability to format a transaction value

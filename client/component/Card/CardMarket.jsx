@@ -7,7 +7,6 @@ import Card from './Card';
 import CountUp from '../CountUp';
 import GraphLine from '../Graph/GraphLine';
 import Icon from '../Icon';
-import config from '../../../config'
 
 export default class CardStatus extends Component {
   static defaultProps = {

@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Table from '../Table';
-import config from '../../../config'
 
 /**
  * @todo this is wrong name for this card, it should be CardVins

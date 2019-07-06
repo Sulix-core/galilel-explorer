@@ -3,7 +3,6 @@ import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import config from '../../../config'
 import PosProfitabilityScore from '../PosProfitabilityScore'
 import PosRestakeIndicator from '../../component/FormattedValues/PosRestakeIndicator'
 

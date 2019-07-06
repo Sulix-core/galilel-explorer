@@ -5,7 +5,6 @@ import moment from 'moment';
 import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import React from 'react';
-import config from '../../../config'
 import Icon from '../Icon'
 
 import Table from '../Table';

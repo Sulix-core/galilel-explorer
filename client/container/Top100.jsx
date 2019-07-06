@@ -8,7 +8,6 @@ import React from 'react';
 
 import HorizontalRule from '../component/HorizontalRule';
 import Table from '../component/Table';
-import config from '../../config'
 
 class Top100 extends Component {
   static defaultProps = {

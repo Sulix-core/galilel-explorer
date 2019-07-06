@@ -2,8 +2,6 @@ import React from 'react';
 
 import Card from './Card';
 
-import config from '../../../config'
-
 const CardExchanges = () => {
 
   return (

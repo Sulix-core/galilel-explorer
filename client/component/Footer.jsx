@@ -7,8 +7,6 @@ import moment from 'moment';
 
 import Icon from './Icon';
 
-import config from '../../config'
-
 /**
  * Will use material icons to render.
  * @param {Object} props The props with the name.

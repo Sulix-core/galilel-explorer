@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Table from '../Table';
-import config from '../../../config'
 
 export default class CardAddressTXs extends Component {
   static defaultProps = {

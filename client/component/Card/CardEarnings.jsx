@@ -3,7 +3,6 @@ import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Card from './Card';
-import config from '../../../config'
 
 const CardEarnings = ({ coin }) => {
   const subsidy = blockchain.getMNSubsidy(coin.blocks, coin.mnsOn, coin.supply);

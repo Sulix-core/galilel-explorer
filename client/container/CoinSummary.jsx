@@ -1,4 +1,3 @@
-import config from '../../config'
 import Actions from '../core/Actions';
 import blockchain from '../../lib/blockchain';
 import Component from '../core/Component';

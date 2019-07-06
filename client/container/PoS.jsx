@@ -7,7 +7,6 @@ import React from 'react';
 
 import HorizontalRule from '../component/HorizontalRule';
 import Select from '../component/Select';
-import config from '../../config'
 
 class PoS extends Component {
   static propTypes = {

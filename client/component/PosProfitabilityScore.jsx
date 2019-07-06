@@ -1,5 +1,4 @@
 import React from 'react';
-import config from '../../config'
 
 /**
  * Take reward and format it into a profitability score

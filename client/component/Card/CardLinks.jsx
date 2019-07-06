@@ -2,8 +2,6 @@ import React from 'react';
 
 import Card from './Card';
 
-import config from '../../../config'
-
 const CardLinks = () => (
   <Card title="Links">
     <a href={config.socialMedia.website} target="_blank">Website</a><br />

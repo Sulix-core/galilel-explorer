@@ -4,7 +4,6 @@ import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import qrcode from 'qrcode';
 import React from 'react';
-import config from '../../../config'
 
 export default class CardAddress extends Component {
   static defaultProps = {
