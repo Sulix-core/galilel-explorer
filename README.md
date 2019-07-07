@@ -17,7 +17,7 @@ thanks for the original version to the Bulwark developers.
 
 ## Requirements
 
-This repo assumes `git`, `mongodb`, `node` and `yarn` are installed with
+This repo assumes `git`, `mongodb`, `node` and `npm` are installed with
 configuration done.  Please adjust commands to your local environment. The
 following links will guide you through the installation.
 
@@ -27,7 +27,7 @@ MongoDB: https://docs.mongodb.com/manual/administration/install-on-linux/
 
 Node.js: https://nodejs.org/en/download/package-manager/
 
-Yarn: https://yarnpkg.com/lang/en/docs/install/
+npm: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
 It is also required to have the latest version of the Galilel
 (https://github.com/Galilel-Project/galilel) desktop wallet daemon running in
@@ -42,7 +42,7 @@ install the packages used by the system.
 ```
 git clone https://github.com/Galilel-Project/galilel-explorer.git
 cd galilel-explorer
-yarn install
+npm install
 ```
 
 ## Configuration
@@ -74,28 +74,28 @@ exit
 
 The following automated tasks are currently needed for Galilel Explorer to
 update. First time you need to do initial sync of the blockchain via
-`node cron/block.js`, takes a lot of time.
+`npm run cron:block`, takes a lot of time.
 
 1. Fetch coin related information like price and supply from CoinMarketCap.
 
-   `yarn run cron:coin`
+   `npm run cron:coin`
 
 2. Update the masternodes list in the database with the most recent information
    clearing old information before.
 
-   `yarn run cron:masternode`
+   `npm run cron:masternode`
 
 3. Gather the list of peers and fetch geographical IP information.
 
-   `yarn run cron:peer`
+   `npm run cron:peer`
 
 4. Sync blocks and transactions by storing them in the database.
 
-   `yarn run cron:block`
+   `npm run cron:block`
 
 5. Generate the rich list.
 
-   `yarn run cron:rich`
+   `npm run cron:rich`
 
 It is recommended to run all the crons before editing the crontab to have the
 information right away. Follow the order above, start with `cron:coin` and end
@@ -115,25 +115,25 @@ the following lines (edit with your local information):
 ## Build
 
 At this time only the client web interface needs to be built using webpack and
-this can be done by running `yarn run build:web`. This will bundle the
+this can be done by running `npm run build:web`. This will bundle the
 application and put it in the `/public` folder for delivery.
 
 ## Run
 
 1. Start the API.
 
-   `yarn run start:api`
+   `npm run start:api`
 
 2. Start the web, open browser [http://localhost:8081](http://localhost:8081).
 
-   `yarn run start:web`
+   `npm run start:web`
 
 ## Test
 
 1. Run the client side tests.
 
-   `yarn run test:client`
+   `npm run test:client`
 
 2. Test the rpc connection, database connection, and API endpoints.
 
-   `yarn run test:server`
+   `npm run test:server`

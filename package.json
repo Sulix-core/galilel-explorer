@@ -7,7 +7,7 @@
   "author": "Maik Broemme <maik.broemme@galilel.org>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run build:web",
+    "build": "npm run build:web",
     "build:web": "webpack --progress --colors",
     "cron:block": "node cron/block.js",
     "cron:coin": "node cron/coin.js",
@@ -19,7 +19,7 @@
     "test:api": "mocha --compilers js:babel-core/register --timeout 2000 test/server/api",
     "test:file": "mocha --compilers js:babel-core/register --timeout 2000 test/server/file",
     "test:rpc": "mocha --compilers js:babel-core/register --timeout 2000 test/server/rpc",
-    "test:server": "yarn run test:api && yarn run test:file && yarn run test:rpc",
+    "test:server": "npm run test:api && npm run test:file && npm run test:rpc",
     "test:web": "mocha --compilers js:babel-core/register test/client"
   },
   "dependencies": {
