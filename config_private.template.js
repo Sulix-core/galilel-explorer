@@ -1,7 +1,7 @@
 /**
  * Global private configuration object.
  */
-const config-private = {
+const config_private = {
   db: {
     'host': 'localhost',
     'port': '27017',
@@ -22,4 +22,4 @@ const config-private = {
   }
 };
 
-module.exports = config-private;
+module.exports = config_private;
