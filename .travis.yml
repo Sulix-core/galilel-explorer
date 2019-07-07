@@ -3,10 +3,7 @@ dist: xenial
 language: node_js
 node_js:
   - "10"
-before_script:
-  - cp config.template.js config.js
 script: npm run build:web
 cache:
-  yarn: true
   directories:
     - "node_modules"
