@@ -12,7 +12,7 @@ backup=(
   "etc/nodejs/galilel-explorer/config_private.js"
 )
 source=(
-  "nodejs-galilel-explorer::git://github.com/Galilel-Project/galilel-explorer#tag=${pkgver}"
+  "nodejs-galilel-explorer::git://github.com/Galilel-Project/galilel-explorer#tag=v${pkgver}"
   "${pkgname}-daemon-api.service"
   "${pkgname}-daemon-web.service"
   "${pkgname}-sync-block.service"
