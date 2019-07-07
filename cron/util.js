@@ -1,7 +1,7 @@
 require('babel-polyfill');
 
 const mongoose = require('mongoose');
-const config = require('../config');
+const config = require('../public/config');
 const { rpc } = require('../lib/cron');
 const blockchain = require('../lib/blockchain');
 const TX = require('../model/tx');

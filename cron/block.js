@@ -1,7 +1,7 @@
 require('babel-polyfill');
 
 const blockchain = require('../lib/blockchain');
-const config = require('../config');
+const config = require('../public/config');
 const { exit, rpc } = require('../lib/cron');
 const { forEachSeries } = require('p-iteration');
 const locker = require('../lib/locker');

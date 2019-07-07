@@ -1,6 +1,6 @@
 require('babel-polyfill');
 const cluster = require('cluster');
-const config = require('../config');
+const config = require('../public/config');
 
 /**
  * Master

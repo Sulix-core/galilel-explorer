@@ -1,6 +1,6 @@
 
 const bodyParser = require('body-parser');
-const config = require('../../config');
+const config = require('../../public/config');
 const cors = require('cors');
 const logger = require('morgan');
 const rateLimit = require('express-rate-limit');

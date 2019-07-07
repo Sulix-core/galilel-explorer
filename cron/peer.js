@@ -1,7 +1,7 @@
 require('babel-polyfill');
 require('../lib/cron');
 
-const config = require('../config');
+const config = require('../public/config');
 const { exit, rpc } = require('../lib/cron');
 const fetch = require('../lib/fetch');
 const { forEach } = require('p-iteration');
