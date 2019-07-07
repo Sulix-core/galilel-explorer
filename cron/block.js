@@ -120,7 +120,7 @@ async function update() {
     console.dateLog(`DB Height: ${dbHeight - 1}, RPC Height: ${rpcHeight}, Clean Start: (${clean ? "YES" : "NO"})`);
 
     // If nothing to do then exit.
-    if (dbHeight >= rpcHeight) {
+    if (dbHeight > rpcHeight) {
       console.dateLog(`No Sync Required!`);
       locker.unlock(type); // Be sure to properly unlock cron
       return;
