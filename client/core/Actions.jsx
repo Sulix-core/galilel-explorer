@@ -11,6 +11,7 @@ import {
 
 const promises = new Map();
 const worker = new fetchWorker();
+const api_url = config.api.host + ':' + config.api.portWorker + config.api.prefix;
 
 worker.onerror = (err) => {
   console.log(err);
@@ -33,21 +34,21 @@ worker.onmessage = (ev) => {
   return true;
 };
 
-const getFromWorker = (type, resolve, reject, query = null) => {
+const getFromWorker = (type, api, resolve, reject, query = null) => {
   promises.set(type, { resolve, reject });
-  worker.postMessage({ query, type });
+  worker.postMessage({ query, type, api });
   return true;
 };
 
 export const getAddress = (query) => {
   return new promise((resolve, reject) => {
-    return getFromWorker('address', resolve, reject, query);
+    return getFromWorker('address', api_url, resolve, reject, query);
   });
 };
 
 export const getBlock = (query) => {
   return new promise((resolve, reject) => {
-    return getFromWorker('block', resolve, reject, query);
+    return getFromWorker('block', api_url, resolve, reject, query);
   });
 };
 
@@ -55,6 +56,7 @@ export const getCoinHistory = (dispatch, query) => {
   return new promise((resolve, reject) => {
     return getFromWorker(
       'coins',
+      api_url,
       (payload) => {
         if (payload && payload.length) {
           dispatch({ payload: payload[0], type: COIN });
@@ -73,19 +75,19 @@ export const getCoinHistory = (dispatch, query) => {
 
 export const getCoinsWeek = () => {
   return new promise((resolve, reject) => {
-    return getFromWorker('coins-week', resolve, reject);
+    return getFromWorker('coins-week', api_url, resolve, reject);
   });
 };
 
 export const getIsBlock = (query) => {
   return new promise((resolve, reject) => {
-    return getFromWorker('is-block', resolve, reject, query);
+    return getFromWorker('is-block', api_url, resolve, reject, query);
   });
 };
 
 export const getMNs = (query) => {
   return new promise((resolve, reject) => {
-    return getFromWorker('mns', resolve, reject, query); /* Resolves to getMNs in fetch.worker.js */
+    return getFromWorker('mns', api_url, resolve, reject, query); /* Resolves to getMNs in fetch.worker.js */
   });
 };
 
@@ -93,6 +95,7 @@ export const getPeers = () => {
   return new promise((resolve, reject) => {
     return getFromWorker(
       'peers',
+      api_url,
       (peers) => {
         resolve(peers.map((peer) => {
           const parts = peer.ip.split('.');
@@ -108,19 +111,19 @@ export const getPeers = () => {
 
 export const getSupply = (dispatch) => {
   return new promise((resolve, reject) => {
-    return getFromWorker('supply', resolve, reject);
+    return getFromWorker('supply', api_url, resolve, reject);
   });
 };
 
 export const getTop100 = () => {
   return new promise((resolve, reject) => {
-    return getFromWorker('top-100', resolve, reject);
+    return getFromWorker('top-100', api_url, resolve, reject);
   });
 };
 
 export const getTX = (query) => {
   return new promise((resolve, reject) => {
-    return getFromWorker('tx', resolve, reject, query);
+    return getFromWorker('tx', api_url, resolve, reject, query);
   });
 };
 
@@ -128,6 +131,7 @@ export const getTXLatest = (dispatch, query) => {
   return new promise((resolve, reject) => {
     return getFromWorker(
       'txs-latest',
+      api_url,
       (payload) => {
         if (dispatch) {
           dispatch({ payload, type: TXS });
@@ -149,6 +153,7 @@ export const getTXs = (dispatch, query) => {
   return new promise((resolve, reject) => {
     return getFromWorker(
       'txs',
+      api_url,
       (payload) => {
         if (dispatch) {
           dispatch({ payload, type: TXS });
@@ -170,6 +175,7 @@ export const getRewards = (dispatch, query) => {
   return new promise((resolve, reject) => {
     return getFromWorker(
       'rewards',
+      api_url,
       (payload) => {
         if (dispatch) {
           dispatch({ payload, type: REWARDS });
@@ -190,7 +196,7 @@ export const getRewards = (dispatch, query) => {
 
 export const getTXsWeek = () => {
   return new promise((resolve, reject) => {
-    return getFromWorker('txs-week', resolve, reject);
+    return getFromWorker('txs-week', api_url, resolve, reject);
   });
 };
 
