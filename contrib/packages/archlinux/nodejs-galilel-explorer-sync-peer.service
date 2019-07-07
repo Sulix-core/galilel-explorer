@@ -1,0 +1,10 @@
+[Unit]
+Description = Galilel Explorer (Sync) - Network peers update
+
+[Service]
+Type = simple
+WorkingDirectory = /usr/lib/node_modules/galilel-explorer
+ExecStart = /usr/bin/node cron/peer.js
+SyslogIdentifier = galilel-explorer
+StandardOutput = syslog
+StandardError = syslog

@@ -1,0 +1,10 @@
+[Unit]
+Description = Galilel Explorer (Sync) - Coin information update
+
+[Service]
+Type = simple
+WorkingDirectory = /usr/lib/node_modules/galilel-explorer
+ExecStart = /usr/bin/node cron/coin.js
+SyslogIdentifier = galilel-explorer
+StandardOutput = syslog
+StandardError = syslog
