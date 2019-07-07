@@ -30,7 +30,7 @@ if (cluster.isMaster) {
  * Worker
  */
 else {
-  const config = require('../config');
+  const config = require('../public/config');
   const db = require('../lib/db');
   const express = require('express');
   const mongoose = require('mongoose');
