@@ -16,6 +16,11 @@ const config = {
   verboseCron: true,
 
   /**
+   * If set to true there are extra tx logging details in cron scripts (Not recommended).
+   */
+  verboseCronTx: false,
+
+  /**
    * If set to 0, cpu cores are detected and worker processes spawned accordingly.
    * If set to > 0, limit the number of worker processes.
    */
