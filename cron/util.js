@@ -330,5 +330,6 @@ module.exports = {
   addPoW,
   getTX,
   vin,
-  vout
+  vout,
+  performDeepTxAnalysis
 };
