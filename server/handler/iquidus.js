@@ -100,10 +100,8 @@ const getnetworkhashps = async (req, res) => {
 
 const getmoneysupply = async (req, res) => {
   try {
-    const results = await UTXO.aggregate([
-      { $group: { _id: 'supply', total: { $sum: '$value' } } }
-    ]);
-    res.json(results.length ? results[0].total : 0);
+    const coin = await getCoin();
+    res.json(coin.netHash);
   } catch(err) {
     console.log(err);
     res.status(500).send(err.message || err);
