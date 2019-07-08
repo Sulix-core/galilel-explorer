@@ -153,10 +153,10 @@ async function vout(rpctx, blockHeight) {
  * @param {Object} rpctx The rpc object from the node.
  */
 async function addPoS(block, rpctx) {
+
   // We will ignore the empty PoS txs.
   if (rpctx.vin[0].coinbase && rpctx.vout[0].value === 0)
     return;
-
 
   // Sync vout first then vins (because a block can have same input as output in the same block)
   const txout = await vout(rpctx, block.height);
@@ -176,6 +176,17 @@ async function addPoS(block, rpctx) {
     vout: txout,
     isReward: isRewardRawTransaction
   };
+
+  // Save tx first then we'll scan it later (as the same )
+  await TX.create(txDetails);
+
+  return txDetails;
+}
+
+/**
+ * Analyse PoS reward data (extract useful details such as confirmations)
+ */
+async function performDeepTxAnalysis(block, rpctx, txDetails) {
 
   // @Todo add PoW Rewards (Before PoS switchover)
   // If our config allows us to extract additional reward data
@@ -242,7 +253,7 @@ async function addPoS(block, rpctx) {
 
   addInvolvedAddresses(txDetails);
 
-  await TX.create(txDetails);
+  txDetails.save();
 }
 
 /**
