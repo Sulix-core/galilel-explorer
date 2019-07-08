@@ -18,6 +18,8 @@ async function vin(rpctx, blockHeight) {
   const txin = [];
   if (rpctx.vin) {
 
+
+
     // Figure out what txIds are used in all the inputs
     const usedTxIdsInVins = new Set();
     rpctx.vin.forEach((vin) => {
@@ -25,8 +27,29 @@ async function vin(rpctx, blockHeight) {
         usedTxIdsInVins.add(vin.txid);
       }
     });
-    
+
     const usedTxs = await TX.find({ txId: { $in: Array.from(usedTxIdsInVins) } }, { txId: 1, vout: 1, blockHeight: 1, createdAt: 1 }); // Only include vout, blockHeight & createdAt fields that we need
+
+    const failTx = async (vin, rpctx) => {
+      const vinTxIdBlock = await rpc.call('getblock', [vin.txid]);
+      const rpcTxIdBlock = await rpc.call('getblock', [rpctx.txid]);
+
+
+      // Verbose console outputs of the unsupported TX so we can easily debug TXs we don't support for inputs
+
+      console.log("Unsupported TX:");
+      console.log("========== vinTxIdBlock: ===============");
+      console.log(vinTxIdBlock);
+      console.log("========== rpcTxIdBlock: ===============");
+      console.log(rpcTxIdBlock);
+      console.log("========== rpctx: ===============");
+      console.log(rpctx);
+      console.log("========== vin: ===============");
+      console.log(vin);
+      console.log("")
+
+      console.log(`*** UNSUPPORTED BLOCKCHAIN: Could not find related TX: ${vin.txid}`);
+    }
 
     const txIds = new Set();
 
@@ -50,24 +73,18 @@ async function vin(rpctx, blockHeight) {
 
         if (shouldStoreRelatedVout) {
           const txById = usedTxs.find(usedTx => usedTx.txId == vin.txid);
-          if (!txById) {
-            // Verbose console outputs of the unsupported TX so we can easily debug TXs we don't support for inputs
-            console.log("Unsupported TX:");
-            console.log("===============");
-            console.log(rpctx);
-            console.log("===============");
-            console.log(vin);
-            throw `*** UNSUPPORTED BLOCKCHAIN: Could not find related TX: ${vin.txid}`;
+          if (txById) {
+            const vinVout = txById.vout.find(vout => vout.n == vin.vout); // Notice how we are accessing by vout number instead of by index (as some vouts are not stored like PoS)
+            vinDetails.relatedVout = {
+              value: vinVout.value,
+              address: vinVout.address,
+              confirmations: blockHeight - txById.blockHeight,
+              date: txById.createdAt,
+              age: rpctx.time - txById.createdAt.getTime() / 1000,
+            };
+          } else {
+            failTx(vin, rpctx);
           }
-
-          const vinVout = txById.vout.find(vout => vout.n == vin.vout); // Notice how we are accessing by vout number instead of by index (as some vouts are not stored like PoS)
-          vinDetails.relatedVout = {
-            value: vinVout.value,
-            address: vinVout.address,
-            confirmations: blockHeight - txById.blockHeight,
-            date: txById.createdAt,
-            age: rpctx.time - txById.createdAt.getTime() / 1000,
-          };
         }
       }
 
@@ -135,7 +152,13 @@ async function vout(rpctx, blockHeight) {
 
     // Insert unspent transactions.
     if (utxo.length) {
-      await UTXO.insertMany(utxo);
+      try {
+        await UTXO.insertMany(utxo);
+      } catch (ex) {
+        console.log(`Failed to insert UTXO on block ${blockHeight}`);
+        console.log(utxo);
+        throw ex;
+      }
     }
   }
   return txout;
@@ -147,12 +170,14 @@ async function vout(rpctx, blockHeight) {
  * @param {Object} rpctx The rpc object from the node.
  */
 async function addPoS(block, rpctx) {
+
   // We will ignore the empty PoS txs.
   if (rpctx.vin[0].coinbase && rpctx.vout[0].value === 0)
     return;
 
-  const txin = await vin(rpctx, block.height);
+  // Sync vout first then vins (because a block can have same input as output in the same block)
   const txout = await vout(rpctx, block.height);
+  const txin = await vin(rpctx, block.height);
 
   // Give an ability for explorer to identify PoS/MN rewards
   const isRewardRawTransaction = blockchain.isRewardRawTransaction(rpctx);
@@ -169,11 +194,20 @@ async function addPoS(block, rpctx) {
     isReward: isRewardRawTransaction
   };
 
+  // Save tx first then we'll scan it later (as the same )
+  return await TX.create(txDetails);
+}
+
+/**
+ * Analyse PoS reward data (extract useful details such as confirmations)
+ */
+async function performDeepTxAnalysis(block, rpctx, txDetails) {
+
   // @Todo add PoW Rewards (Before PoS switchover)
   // If our config allows us to extract additional reward data
   if (!!config.splitRewardsData) {
     // If this is a rewards transaction fetch the pos & masternode reward details
-    if (isRewardRawTransaction) {
+    if (txDetails.isReward) {
 
       const currentTxTime = rpctx.time;
 
@@ -234,7 +268,7 @@ async function addPoS(block, rpctx) {
 
   addInvolvedAddresses(txDetails);
 
-  await TX.create(txDetails);
+  await txDetails.save();
 }
 
 /**
@@ -243,8 +277,9 @@ async function addPoS(block, rpctx) {
  * @param {Object} rpctx The rpc object from the node.
  */
 async function addPoW(block, rpctx) {
-  const txin = await vin(rpctx, block.height);
+  // Sync vout first then vins (because a block can have same input as output in the same block)
   const txout = await vout(rpctx, block.height);
+  const txin = await vin(rpctx, block.height);
 
   let txDetails = {
     _id: new mongoose.Types.ObjectId(),
@@ -268,7 +303,7 @@ async function addPoW(block, rpctx) {
  */
 function addInvolvedAddresses(tx) {
   let involvedAddresses = new Set(); // Will store distinct addresses used in this transaction
-  
+
   tx.vout.forEach(vout => {
     if (vout.address) {
       involvedAddresses.add(vout.address);
@@ -310,5 +345,6 @@ module.exports = {
   addPoW,
   getTX,
   vin,
-  vout
+  vout,
+  performDeepTxAnalysis
 };

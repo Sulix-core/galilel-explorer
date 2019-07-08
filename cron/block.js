@@ -23,7 +23,7 @@ console.dateLog = (...log) => {
   }
 
   const currentDate = new Date().toGMTString();
-  console.log(`${currentDate}\t`,...log);
+  console.log(`${currentDate}\t`, ...log);
 }
 
 /**
@@ -33,16 +33,24 @@ console.dateLog = (...log) => {
  */
 async function syncBlocks(start, stop, clean = false) {
   if (clean) {
-    await Block.remove({ height: { $gte: start, $lte: stop } });
-    await TX.remove({ blockHeight: { $gte: start, $lte: stop } });
-    await UTXO.remove({ blockHeight: { $gte: start, $lte: stop } });
-    await BlockRewardDetails.remove({ blockHeight: { $gte: start, $lte: stop } });
+    await Block.remove({ height: { $gt: start, $lte: stop } });
+    await TX.remove({ blockHeight: { $gt: start, $lte: stop } });
+    await UTXO.remove({ blockHeight: { $gte: start, $lte: stop } });  // We will remove this in next patch
+    await BlockRewardDetails.remove({ blockHeight: { $gt: start, $lte: stop } });
   }
 
+  let blockSyncing = false;
+
   let block;
-  for (let height = start; height <= stop; height++) {
+  for (let height = start + 1; height <= stop; height++) {
+
     const hash = await rpc.call('getblockhash', [height]);
     const rpcblock = await rpc.call('getblock', [hash]);
+
+    if (blockSyncing) {
+      throw "Block-overrun detected Only a single block should be running";
+    }
+    blockSyncing = true;
 
     block = new Block({
       hash,
@@ -64,16 +72,39 @@ async function syncBlocks(start, stop, clean = false) {
     let voutsCount = 0;
 
     // Notice how we're ensuring to only use a single rpc call with forEachSeries()
+    let addedPosTxs = []
+    let txSyncing = false;
     await forEachSeries(block.txs, async (txhash) => {
+
+      if (txSyncing) {
+        throw "TX-overrun detected Only a single block should be running";
+      }
+      txSyncing = true;
+
       const rpctx = await util.getTX(txhash, true);
+      config.verboseCronTx && console.log(`txId: ${rpctx.txid}`);
 
       vinsCount += rpctx.vin.length;
       voutsCount += rpctx.vout.length;
 
+      let postTx = null;
       if (blockchain.isPoS(block)) {
-        await util.addPoS(block, rpctx);
+        posTx = await util.addPoS(block, rpctx);
+        addedPosTxs.push({ rpctx, posTx });
       } else {
         await util.addPoW(block, rpctx);
+      }
+
+      config.verboseCronTx && console.log(`tx added:(txid:${rpctx.txid}, id: ${posTx ? posTx._id : '*NO rpctx*'})\n`);
+
+      txSyncing = false;
+    });
+
+    // After adding the tx we'll scan them and do deep analysis
+    await forEachSeries(addedPosTxs, async (addedPosTx) => {
+      const { rpctx, posTx } = addedPosTx;
+      if (posTx) {
+        await util.performDeepTxAnalysis(block, rpctx, posTx);
       }
     });
 
@@ -85,6 +116,8 @@ async function syncBlocks(start, stop, clean = false) {
 
     const syncPercent = ((block.height / stop) * 100).toFixed(2);
     console.dateLog(`(${syncPercent}%) Height: ${block.height}/${stop} Hash: ${block.hash} Txs: ${block.txs.length} Vins: ${vinsCount} Vouts: ${voutsCount}`);
+
+    blockSyncing = false;
   }
 }
 
@@ -94,18 +127,20 @@ async function syncBlocks(start, stop, clean = false) {
 async function update() {
   const type = 'block';
   let code = 0;
+  let hasAcquiredLocked = false;
 
   config.verboseCron && console.dateLog(`Block Sync Started`)
   try {
     // Create the cron lock, if return is called below the finally will still be triggered releasing the lock without errors
     // Notice how we moved the cron lock on top so we lock before block height is fetched otherwise collisions could occur
     locker.lock(type);
+    hasAcquiredLocked = true;
 
     const info = await rpc.call('getinfo');
     const block = await Block.findOne().sort({ height: -1 });
 
-    let clean = true; // We no longer need to clean by default because block is the last item inserted. If we have the block that means all data for that block exists
-    let dbHeight = block && block.height ? block.height + 1 : 1;
+    let clean = true;
+    let dbHeight = block && block.height ? block.height : 0; // Height + 1 because block is the last item inserted. If we have the block that means all data for that block exists
     let rpcHeight = info.blocks;
 
     // If heights provided then use them instead.
@@ -117,28 +152,26 @@ async function update() {
       clean = true;
       rpcHeight = parseInt(process.argv[3], 10);
     }
-    console.dateLog(`DB Height: ${dbHeight - 1}, RPC Height: ${rpcHeight}, Clean Start: (${clean ? "YES" : "NO"})`);
+    console.dateLog(`DB Height: ${dbHeight}, RPC Height: ${rpcHeight}, Clean Start: (${clean ? "YES" : "NO"})`);
 
     // If nothing to do then exit.
-    if (dbHeight > rpcHeight) {
+    if (dbHeight >= rpcHeight) {
       console.dateLog(`No Sync Required!`);
-      locker.unlock(type); // Be sure to properly unlock cron
       return;
-    }
-    // If starting from genesis skip.
-    else if (dbHeight === 0) {
-      dbHeight = 1;
     }
 
     config.verboseCron && console.dateLog(`Sync Started!`);
     await syncBlocks(dbHeight, rpcHeight, clean);
     config.verboseCron && console.dateLog(`Sync Finished!`);
-
-    locker.unlock(type); // It is important that we keep proper lock during syncing otherwise there will be blockchain data corruption and we can't be sure of integrity
   } catch (err) {
     console.dateLog(err);
     code = 1;
   } finally {
+    // Try to release the lock if lock was acquired
+    if (hasAcquiredLocked) {
+      locker.unlock(type);
+    }
+
     config.verboseCron && console.log(""); // Adds new line between each run with verbosity
     exit(code);
   }
