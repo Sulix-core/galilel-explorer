@@ -101,7 +101,7 @@ const getnetworkhashps = async (req, res) => {
 const getmoneysupply = async (req, res) => {
   try {
     const coin = await getCoin();
-    res.json(coin.netHash);
+    res.json(coin.supply);
   } catch(err) {
     console.log(err);
     res.status(500).send(err.message || err);
