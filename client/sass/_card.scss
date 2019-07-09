@@ -45,10 +45,6 @@
     line-height: 2;
   }
 
-  &__graph {
-    margin: 0 -15px;
-  }
-
   &__label {
     padding-right: 10px;
 
@@ -127,8 +123,6 @@
     @include media-breakpoint-down(lg) {
       padding: 0;
     }
-
-    padding: 0 20px;
   }
 
   &--graph &__data-main {
