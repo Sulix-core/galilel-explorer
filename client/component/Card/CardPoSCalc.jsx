@@ -35,7 +35,7 @@ export default class CardPoSCalc extends React.Component {
     return (
       <Card title="Calculator">
         <div className="row">
-          <div className="col-sm-12 col-md-8">
+          <div className="col-sm-8 col-md-7">
             <input
               onClick={ this.handleClick }
               onKeyPress={ this.handleKeyPress }
@@ -45,7 +45,7 @@ export default class CardPoSCalc extends React.Component {
               type="text"
               value={ this.state.amount } />
           </div>
-          <div className="col-sm-12 col-md-4 text-center">
+          <div className="col-sm-4 col-md-5 text-right">
             <button onClick={ this.handleClick }>
               Estimate
             </button>
