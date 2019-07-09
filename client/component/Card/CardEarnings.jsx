@@ -5,7 +5,7 @@ import React from 'react';
 import Card from './Card';
 
 const CardEarnings = ({ coin }) => {
-  const subsidy = blockchain.getMNSubsidy(coin.blocks, coin.mnsOn, coin.supply);
+  const subsidy = blockchain.getMNSubsidy(coin.blocks, coin.mnsOn);
   const day = blockchain.getMNBlocksPerDay(coin.mnsOn) * subsidy;
   const week = blockchain.getMNBlocksPerWeek(coin.mnsOn) * subsidy;
   const month = blockchain.getMNBlocksPerMonth(coin.mnsOn) * subsidy;

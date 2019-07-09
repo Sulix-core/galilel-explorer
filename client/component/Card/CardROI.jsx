@@ -8,7 +8,7 @@ import Card from './Card';
 const CardROI = ({ coin, supply }) => {
   const mncoins = blockchain.mncoins;
   const mns = coin.mnsOff + coin.mnsOn;
-  const subsidy = blockchain.getMNSubsidy(coin.blocks, mns, coin.supply);
+  const subsidy = blockchain.getMNSubsidy(coin.blocks, mns);
   const roi = blockchain.getROI(subsidy, coin.mnsOn);
 
   return (
