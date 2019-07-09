@@ -51,7 +51,6 @@ export default class CardNetworkSummary extends Component {
         </p>
           <GraphLine
             color="#795548"
-            className="card__graph"
             data={ this.props.yAxis.reverse() }
             height="100px"
             labels={ this.props.xAxis.reverse() }
