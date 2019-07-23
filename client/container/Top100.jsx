@@ -58,7 +58,7 @@ class Top100 extends Component {
             ),
             value: (
               <Link to={`/address/${wallet.address}`}>
-                <span className={`badge badge-${wallet.value < 0 ? 'danger-monospace' : 'success-monospace'} badge-right`}>
+                <span className="badge badge-transaction-amount badge-right">
                   {numeral(wallet.value).format(config.coinDetails.coinNumberFormat)}
                 </span>
               </Link>

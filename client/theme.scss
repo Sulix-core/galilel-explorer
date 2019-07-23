@@ -179,7 +179,6 @@ hr {
     font-family: monospace;
     background-color: $red;
     border-radius: 2px;
-    color: $light-brown-3;
     padding: .2em .6em;
   }
 
@@ -188,7 +187,14 @@ hr {
     font-family: monospace;
     background-color: $green;
     border-radius: 2px;
-    color: $black;
+    padding: .2em .6em;
+  }
+
+  &-transaction-amount {
+    color: $grey-10-black !important;
+    font-family: monospace;
+    background-color: $dark-brown-3;
+    border-radius: 2px;
     padding: .2em .6em;
   }
 

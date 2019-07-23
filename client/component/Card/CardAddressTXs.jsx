@@ -56,9 +56,8 @@ export default class CardAddressTXs extends Component {
             ...tx,
             amount: (
               <span
-                className={ `badge badge-${ isSpent ? 'danger-monospace' : 'success-monospace' } badge-right` }>
-                { isSpent ? numeral(-amount).format(config.coinDetails.coinNumberFormatFinance) :
-                            numeral(amount).format(config.coinDetails.coinNumberFormatFinance) } { config.coinDetails.shortName }
+                className="badge badge-transaction-amount badge-right">
+                { numeral(amount).format(config.coinDetails.coinNumberFormat) } { config.coinDetails.shortName }
               </span>
             ),
             createdAt: (
