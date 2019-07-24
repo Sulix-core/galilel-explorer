@@ -60,13 +60,39 @@ const getAddress = async (req, res) => {
       .allowDiskUse(true)
       .exec();
 
+    /**
+     * @todo This is a weird hack to get correct balance and received amounts
+     * because we limit the previous 2 queries until we have proper server
+     * side pagination. Also we will include really all transactions of
+     * address.
+     */
+    const qtxsFull = TX
+      .aggregate([
+        { $match: { 'vout.address': req.params.hash } },
+        { $unwind: '$vout' },
+        { $group: { _id: null, total: { $sum: "$vout.value" } } }
+      ])
+      .allowDiskUse(true)
+      .exec();
+    const qutxoFull = UTXO
+      .aggregate([
+        { $match: { 'address': req.params.hash } },
+        { $group: { _id: null, total: { $sum: "$value" } } }
+      ])
+      .allowDiskUse(true)
+      .exec();
+
+    const txsFull = await qtxsFull;
+    const utxoFull = await qutxoFull;
+
     const masternodeForAddress = await Masternode.findOne({ addr: req.params.hash });
     const isMasternode = !!masternodeForAddress;
 
     const txs = await qtxs;
     const utxo = await qutxo;
-    const balance = utxo.reduce((acc, tx) => acc + tx.value, 0.0);
-    const received = txs.reduce((acc, tx) => acc + tx.vout.reduce((a, t) => a + t.value, 0.0), 0.0);
+
+    const balance = utxoFull[0].total;
+    const received = txsFull[0].total;
 
     res.json({ balance, received, txs, utxo, isMasternode });
   } catch (err) {
