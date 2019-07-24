@@ -57,7 +57,7 @@ export default class CardAddressTXs extends Component {
             amount: (
               <span
                 className="badge badge-transaction-amount badge-right">
-                { numeral(amount).format(config.coinDetails.coinNumberFormat) } { config.coinDetails.shortName }
+                { numeral(amount).format(config.coinDetails.coinNumberFormat) }
               </span>
             ),
             createdAt: (
