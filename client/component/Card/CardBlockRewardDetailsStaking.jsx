@@ -52,7 +52,7 @@ export default class CardBlockRewardDetailsStaking extends Component {
           <div className="card__row">
             <span className="card__label">Stake Reward:</span>
             <span className="card__result">
-              {this.getBlockRewardLink(blockRewardDetails)}
+              {numeral(blockRewardDetails.stake.reward).format(config.coinDetails.coinNumberFormat)} {config.coinDetails.shortName}
             </span>
           </div>
           <div className="card__row">
@@ -62,6 +62,12 @@ export default class CardBlockRewardDetailsStaking extends Component {
           <div className="card__row">
             <span className="card__label">Stake Input Confirmations:</span>
             <span className="card__result">{inputConfirmations}</span>
+          </div>
+          <div className="card__row">
+            <span className="card__label">Restake Amount:</span>
+            <span className="card__result">
+              {this.getBlockRewardLink(blockRewardDetails)}
+            </span>
           </div>
           <div className="card__row">
             <span className="card__label">PoS Profitability Score:</span>
