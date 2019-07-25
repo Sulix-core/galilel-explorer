@@ -72,7 +72,7 @@ export default class CardRewards extends Component {
         ),
         posReward: (
           <Link to={this.getRewardLink(reward)}>
-            <span className={`badge badge-${reward.stake.reward < 0 ? 'danger-monospace' : 'success-monospace'}`}>
+            <span className="badge badge-transaction-amount">
               {numeral(reward.stake.reward).format(config.coinDetails.coinNumberFormat)}
             </span>
           </Link>
@@ -89,7 +89,7 @@ export default class CardRewards extends Component {
         ),
         masternodeReward: (
           <Link to={this.getRewardLink(reward)}>
-            <span className={`badge badge-${reward.masternode.reward < 0 ? 'danger-monospace' : 'success-monospace'}`}>
+            <span className="badge badge-transaction-amount">
               {numeral(reward.masternode.reward).format(config.coinDetails.coinNumberFormat)}
             </span>
           </Link>
