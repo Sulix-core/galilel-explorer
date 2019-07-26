@@ -91,8 +91,8 @@ const getAddress = async (req, res) => {
     const txs = await qtxs;
     const utxo = await qutxo;
 
-    const balance = utxoFull[0].total;
-    const received = txsFull[0].total;
+    const balance = (utxoFull[0] !== undefined) ? utxoFull[0].total : 0;
+    const received = (txsFull[0] !== undefined) ? txsFull[0].total : 0;
 
     res.json({ balance, received, txs, utxo, isMasternode });
   } catch (err) {
