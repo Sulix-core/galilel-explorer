@@ -207,7 +207,7 @@ async function performDeepTxAnalysis(block, rpctx, txDetails) {
   // If our config allows us to extract additional reward data
   if (!!config.splitRewardsData) {
     // If this is a rewards transaction fetch the pos & masternode reward details
-    if (txDetails.isReward) {
+    if (txDetails.isReward && rpctx.vin[0].scriptSig.asm !== 'OP_ZEROCOINSPEND') {
 
       const currentTxTime = rpctx.time;
 
