@@ -23,6 +23,8 @@ source=(
   "${pkgname}-sync-masternode.timer"
   "${pkgname}-sync-peer.service"
   "${pkgname}-sync-peer.timer"
+  "${pkgname}-sync-proposal.service"
+  "${pkgname}-sync-proposal.timer"
   "${pkgname}-sync-rich.service"
   "${pkgname}-sync-rich.timer"
 )
@@ -38,6 +40,8 @@ sha256sums=(
   "413ec5843c21b4c5b379fde96388727b4435748221e2724995fbbc1738e01b80"
   "4a53b30e9a9031ac5f23d54ae466ff3a49be4f244e526e72b31c27738b746346"
   "c9f2182030a483826182cfc86391d53218c9f0177e219bc83643e986575ff92b"
+  "8e00cd0e0d194d4dc9462a66c3a9e7168797b2b860aa43f3a85eccc48038760b"
+  "eefe48f44d24940bdf3da689d85fcebba44941894cf5adbcb6ed07d58747cad8"
   "64a70b517c009b8b6b32741b07d8c3fb72df909a2b7d88ea926010e34dcefc24"
   "8af2515c4fbfb144f744e7c96aed5ea49622dd2705bbb05f2235750f1f2d2be3"
 )
@@ -71,6 +75,8 @@ package() {
   install -D -m 0644 "${srcdir}/${pkgname}-sync-masternode.timer" "${pkgdir}/usr/lib/systemd/system/${pkgname}-sync-masternode.timer"
   install -D -m 0644 "${srcdir}/${pkgname}-sync-peer.service" "${pkgdir}/usr/lib/systemd/system/${pkgname}-sync-peer.service"
   install -D -m 0644 "${srcdir}/${pkgname}-sync-peer.timer" "${pkgdir}/usr/lib/systemd/system/${pkgname}-sync-peer.timer"
+  install -D -m 0644 "${srcdir}/${pkgname}-sync-proposal.service" "${pkgdir}/usr/lib/systemd/system/${pkgname}-sync-proposal.service"
+  install -D -m 0644 "${srcdir}/${pkgname}-sync-proposal.timer" "${pkgdir}/usr/lib/systemd/system/${pkgname}-sync-proposal.timer"
   install -D -m 0644 "${srcdir}/${pkgname}-sync-rich.service" "${pkgdir}/usr/lib/systemd/system/${pkgname}-sync-rich.service"
   install -D -m 0644 "${srcdir}/${pkgname}-sync-rich.timer" "${pkgdir}/usr/lib/systemd/system/${pkgname}-sync-rich.timer"
   ln -s "/etc/nodejs/galilel-explorer/config.js" "${pkgdir}/usr/lib/node_modules/galilel-explorer/public/config.js"
