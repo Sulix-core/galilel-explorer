@@ -85,15 +85,20 @@ update. First time you need to do initial sync of the blockchain via
 
    `npm run cron:masternode`
 
-3. Gather the list of peers and fetch geographical IP information.
+3. Generate the list of budget proposals in the database with the most recent
+   information, clearing old information before.
+
+   `npm run cron:proposal`
+
+4. Gather the list of peers and fetch geographical IP information.
 
    `npm run cron:peer`
 
-4. Sync blocks and transactions by storing them in the database.
+5. Sync blocks and transactions by storing them in the database.
 
    `npm run cron:block`
 
-5. Generate the rich list.
+6. Generate the rich list.
 
    `npm run cron:rich`
 
@@ -107,6 +112,7 @@ the following lines (edit with your local information):
 ```
 */1 * * * * cd /path/to/galilel-explorer && /path/to/node cron/block.js >> tmp/block.log 2>&1
 */1 * * * * cd /path/to/galilel-explorer && /path/to/node cron/masternode.js >> tmp/masternode.log 2>&1
+*/5 * * * * cd /path/to/galilel-explorer && /path/to/node cron/proposal.js >> tmp/proposal.log 2>&1
 */1 * * * * cd /path/to/galilel-explorer && /path/to/node cron/peer.js >> tmp/peer.log 2>&1
 */1 * * * * cd /path/to/galilel-explorer && /path/to/node cron/rich.js >> tmp/rich.log 2>&1
 */5 * * * * cd /path/to/galilel-explorer && /path/to/node cron/coin.js >> tmp/coin.log 2>&1

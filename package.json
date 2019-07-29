@@ -12,6 +12,7 @@
     "cron:block": "node cron/block.js",
     "cron:coin": "node cron/coin.js",
     "cron:masternode": "node cron/masternode.js",
+    "cron:proposal": "node cron/proposal.js",
     "cron:peer": "node cron/peer.js",
     "cron:rich": "node cron/rich.js",
     "start:api": "node server/index.js",
