@@ -91,6 +91,12 @@ export const getMNs = (query) => {
   });
 };
 
+export const getPPs = (query) => {
+  return new promise((resolve, reject) => {
+    return getFromWorker('pps', api_url, resolve, reject, query);
+  });
+};
+
 export const getPeers = () => {
   return new promise((resolve, reject) => {
     return getFromWorker(
@@ -228,6 +234,7 @@ export default {
   getCoinsWeek,
   getIsBlock,
   getMNs,
+  getPPs,
   getPeers,
   getSupply,
   getTop100,
