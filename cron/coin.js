@@ -19,35 +19,69 @@ async function syncCoin() {
   const date = moment().utc().startOf('minute').toDate();
 
   /**
-   * Setup the coinmarketcap.com api url.
+   * Setup the market api url.
    */
-  const url = `${ config.coinMarketCap.api }${ config.coinMarketCap.ticker }`;
+  const provider = `${ config.apiProvider }`;
 
   const info = await rpc.call('getinfo');
   const masternodes = await rpc.call('getmasternodecount');
   const nethashps = await rpc.call('getnetworkhashps');
 
-  let market = await fetch(url);
-  if (Array.isArray(market)) {
-    market = market.length ? market[0] : {};
+  /**
+   * CoinMarketCap
+   */
+  if (provider === "CoinMarketCap") {
+    const url = `${ config.coinMarketCap.api }${ config.coinMarketCap.ticker }`;
+    let market = await fetch(url);
+    if (Array.isArray(market)) {
+      market = market.length ? market[0] : {};
+    }
+
+    const coin = new Coin({
+      cap: market.market_cap_usd,
+      createdAt: date,
+      blocks: info.blocks,
+      btc: market.price_btc,
+      diff: info.difficulty,
+      mnsOff: masternodes.total - masternodes.stable,
+      mnsOn: masternodes.stable,
+      netHash: nethashps,
+      peers: info.connections,
+      status: 'Online',
+      supply: info.moneysupply,
+      usd: market.price_usd
+    });
+
+    await coin.save();
   }
 
-  const coin = new Coin({
-    cap: market.market_cap_usd,
-    createdAt: date,
-    blocks: info.blocks,
-    btc: market.price_btc,
-    diff: info.difficulty,
-    mnsOff: masternodes.total - masternodes.stable,
-    mnsOn: masternodes.stable,
-    netHash: nethashps,
-    peers: info.connections,
-    status: 'Online',
-    supply: info.moneysupply,
-    usd: market.price_usd
-  });
+  /**
+   * CoinGecko
+   */
+  if (provider === "CoinGecko") {
+    const url = `${ config.coinGecko.api }${ config.coinGecko.ticker }`;
+    let market = await fetch(url);
+    if (Array.isArray(market)) {
+      market = market.length ? market[0] : {};
+    }
 
-  await coin.save();
+    const coin = new Coin({
+      cap: market.market_data.market_cap.usd,
+      createdAt: date,
+      blocks: info.blocks,
+      btc: market.market_data.current_price.btc,
+      diff: info.difficulty,
+      mnsOff: masternodes.total - masternodes.stable,
+      mnsOn: masternodes.stable,
+      netHash: nethashps,
+      peers: info.connections,
+      status: 'Online',
+      supply: info.moneysupply,
+      usd: market.market_data.current_price.usd
+    });
+
+    await coin.save();
+  }
 }
 
 /**
