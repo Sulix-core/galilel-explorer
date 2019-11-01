@@ -12,8 +12,9 @@
 
 Simple and beautiful cryptocurrency block explorer system. It includes a
 Proof-of-Stake calculator, masternode statistics and market statistics based
-on CoinMarketCap (https://coinmarketcap.com/currencies/galilel/) data. Many
-thanks for the original version to the Bulwark developers.
+on CoinMarketCap (https://coinmarketcap.com/currencies/galilel/) or CoinGecko
+(https://www.coingecko.com/coins/galilel) data. Many thanks for the original
+version to the Bulwark developers.
 
 ## Requirements
 
@@ -76,7 +77,8 @@ The following automated tasks are currently needed for Galilel Explorer to
 update. First time you need to do initial sync of the blockchain via
 `npm run cron:block`, takes a lot of time.
 
-1. Fetch coin related information like price and supply from CoinMarketCap.
+1. Fetch coin related information like price and supply from CoinMarketCap or
+   CoinGecko.
 
    `npm run cron:coin`
 
