@@ -11,6 +11,17 @@ const config = {
   },
 
   /**
+   * Specify the RPC-API of the coin daemon. The following options are available:
+   *
+   * modern (default)
+   * - getmasternodecount, listmasternodes, getbudgetinfo and getmasternodecount
+   *
+   * legacy
+   * - masternode, masternodelist, mnbudget
+   */
+  rpcApi: 'modern',
+
+  /**
    * If set to true there are extra logging details in cron scripts.
    */
   verboseCron: true,

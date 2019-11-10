@@ -23,9 +23,33 @@ async function syncCoin() {
    */
   const provider = `${ config.apiProvider }`;
 
+  /**
+   * Get RPC-API model.
+   */
+  const rpcApi = `${ config.rpcApi }`;
+
   const info = await rpc.call('getinfo');
-  const masternodes = await rpc.call('getmasternodecount');
   const nethashps = await rpc.call('getnetworkhashps');
+
+  /* shared variables. */
+  let mnsOff;
+  let mnsOn;
+  let supply;
+
+  if (rpcApi === "modern") {
+    const masternodes = await rpc.call('getmasternodecount');
+    mnsOff = masternodes.total - masternodes.stable;
+    mnsOn = masternodes.stable;
+    supply = info.moneysupply;
+  }
+
+  if (rpcApi === "legacy") {
+    const masternodes = await rpc.call('masternode', ['count']);
+    const txoutsetinfo = await rpc.call('gettxoutsetinfo');
+    mnsOff = masternodes;
+    mnsOn = masternodes;
+    supply = txoutsetinfo.total_amount;
+  }
 
   /**
    * CoinMarketCap
@@ -43,12 +67,12 @@ async function syncCoin() {
       blocks: info.blocks,
       btc: market.price_btc,
       diff: info.difficulty,
-      mnsOff: masternodes.total - masternodes.stable,
-      mnsOn: masternodes.stable,
+      mnsOff: mnsOff,
+      mnsOn: mnsOn,
       netHash: nethashps,
       peers: info.connections,
       status: 'Online',
-      supply: info.moneysupply,
+      supply: supply,
       usd: market.price_usd
     });
 
@@ -71,12 +95,12 @@ async function syncCoin() {
       blocks: info.blocks,
       btc: market.market_data.current_price.btc,
       diff: info.difficulty,
-      mnsOff: masternodes.total - masternodes.stable,
-      mnsOn: masternodes.stable,
+      mnsOff: mnsOff,
+      mnsOn: mnsOn,
       netHash: nethashps,
       peers: info.connections,
       status: 'Online',
-      supply: info.moneysupply,
+      supply: supply,
       usd: market.market_data.current_price.usd
     });
 
