@@ -11,6 +11,17 @@ const config = {
   },
 
   /**
+   * Specify the RPC-API of the coin daemon. The following options are available:
+   *
+   * modern (default)
+   * - getmasternodecount, listmasternodes, getbudgetinfo and getmasternodecount
+   *
+   * legacy
+   * - masternode, masternodelist, mnbudget
+   */
+  rpcApi: 'modern',
+
+  /**
    * If set to true there are extra logging details in cron scripts.
    */
   verboseCron: true,
@@ -47,10 +58,23 @@ const config = {
   freegeoip: {
     'api': 'https://extreme-ip-lookup.com/json/'
   },
+
+  /**
+   * API markets.
+   */
   coinMarketCap: {
     'api': 'https://api.coinmarketcap.com/v1/ticker/',
     'ticker': 'galilel'
   },
+  coinGecko: {
+    'api': 'https://api.coingecko.com/api/v3/coins/',
+    'ticker': 'galilel'
+  },
+
+  /**
+   * Specify the market API provider (coinMarketCap and coinGecko are supported).
+   */
+  apiProvider: 'CoinMarketCap',
 
   /**
    * All links to website and social media.
