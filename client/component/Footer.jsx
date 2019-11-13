@@ -47,36 +47,11 @@ class Footer extends Component {
           <div className="footer__social-media-wrapper">
             <div className="footer__social-title">Social Media</div>
             <div>
-              <a href={config.socialMedia.discord} target="_blank">
-                <Icon name="discord" className="fab footer__social-media-icon" />
-              </a>
-              <a href={config.socialMedia.telegram} target="_blank">
-                <Icon name="telegram" className="fab footer__social-media-icon" />
-              </a>
-              <a href={config.socialMedia.twitter} target="_blank">
-                <Icon name="twitter" className="fab footer__social-media-icon" />
-              </a>
-              <a href={config.socialMedia.bitcoinTalk} target="_blank">
-                <Icon name="bitcoin" className="fab footer__social-media-icon" />
-              </a>
-              <a href={config.socialMedia.facebook} target="_blank">
-                <Icon name="facebook" className="fab footer__social-media-icon" />
-              </a>
-              <a href={config.socialMedia.youtube} target="_blank">
-                <Icon name="youtube" className="fab footer__social-media-icon" />
-              </a>
-              <a href={config.socialMedia.github} target="_blank">
-                <Icon name="github" className="fab footer__social-media-icon" />
-              </a>
-              <a href={config.socialMedia.instagram} target="_blank">
-                <Icon name="instagram" className="fab footer__social-media-icon" />
-              </a>
-              <a href={config.socialMedia.reddit} target="_blank">
-                <Icon name="reddit" className="fab footer__social-media-icon" />
-              </a>
-              <a href={config.socialMedia.medium} target="_blank">
-                <Icon name="medium" className="fab footer__social-media-icon" />
-              </a>
+              {config.socialMedia.map((media) => (
+                <a href={media.link} target="_blank">
+                  <Icon name={media.icon} className="fab footer__social-media-icon" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
