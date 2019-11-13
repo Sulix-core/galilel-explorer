@@ -79,19 +79,63 @@ const config = {
   /**
    * All links to website and social media.
    */
-  socialMedia: {
-    'website': 'https://galilel.org/',
-    'discord': 'https://discord.galilel.org',
-    'telegram': 'https://t.me/GalilelEN',
-    'twitter': 'https://twitter.com/GalilelEN',
-    'bitcoinTalk': 'https://bitcointalk.galilel.org',
-    'facebook': 'https://facebook.com/GalilelEN',
-    'youtube': 'https://youtube.com/channel/UC26rKBciicXp33dK8NkALmg',
-    'github': 'https://github.com/Galilel-Project',
-    'instagram': 'https://instagram.com/galilel_en/',
-    'reddit': 'https://www.reddit.com/r/Galilel/',
-    'medium': 'https://medium.com/galilel'
-  },
+  socialMedia: [
+    {
+      'title': 'Website',
+      'link': 'https://galilel.org/',
+      'icon': 'website'
+    },
+    {
+      'title': 'Discord',
+      'link': 'https://discord.galilel.org',
+      'icon': 'discord'
+    },
+    {
+      'title': 'Telegram',
+      'link': 'https://t.me/GalilelEN',
+      'icon': 'telegram'
+    },
+    {
+      'title': 'Twitter',
+      'link': 'https://twitter.com/GalilelEN',
+      'icon': 'twitter'
+    },
+    {
+      'title': 'BitcoinTalk',
+      'link': 'https://bitcointalk.galilel.org',
+      'icon': 'bitcoin'
+    },
+    {
+      'title': 'Facebook',
+      'link': 'https://facebook.com/GalilelEN',
+      'icon': 'facebook'
+    },
+    {
+      'title': 'YouTube',
+      'link': 'https://youtube.com/channel/UC26rKBciicXp33dK8NkALmg',
+      'icon': 'youtube'
+    },
+    {
+      'title': 'Github',
+      'link': 'https://github.com/Galilel-Project',
+      'icon': 'github'
+    },
+    {
+      'title': 'Instagram',
+      'link': 'https://instagram.com/galilel_en/',
+      'icon': 'instagram'
+    },
+    {
+      'title': 'Reddit',
+      'link': 'https://www.reddit.com/r/Galilel/',
+      'icon': 'reddit'
+    },
+    {
+      'title': 'Medium',
+      'link': 'https://medium.com/galilel',
+      'icon': 'medium'
+    }
+  ],
 
   /**
    * All exchange links.

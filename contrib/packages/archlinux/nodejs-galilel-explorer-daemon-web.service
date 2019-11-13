@@ -3,8 +3,6 @@ Description = Galilel Explorer (Frontend)
 After = network.target
 
 [Service]
-User = galilel
-Group = galilel
 Type = simple
 WorkingDirectory = /usr/lib/node_modules/galilel-explorer
 ExecStart = /usr/bin/npm run start:web
