@@ -53,7 +53,7 @@ export default class CardStatus extends Component {
               <span
                 className={ `u--text-${ isPos ? 'green' : 'red' }` }
                 key={ dirArrow }>
-                <Icon className="card__icon--arrow" name={ dirArrow } />
+                <Icon className="card__icon--arrow fas" name={ dirArrow } />
                 <span>{ numeral(growth * 100.0).format('0,0.00') }% &nbsp;</span>
               </span>
               <span>In { this.props.xAxis.length * 5 } minutes</span>

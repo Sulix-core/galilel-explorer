@@ -63,23 +63,23 @@ export default class Pagination extends Component {
       <ul className={ `pagination${ this.props.className ? ` ${ this.props.className }` : '' }` }>
         <li className="page-item">
           <a className="page-link" href="#" onClick={ (ev) => this.handlePage(ev, 1) }>
-            <Icon name="angle-double-left" />
+            <Icon name="angle-double-left" className="fas" />
           </a>
         </li>
         <li className="page-item">
           <a className="page-link" href="#" onClick={ this.handleNewer }>
-            <Icon name="angle-left" />
+            <Icon name="angle-left" className="fas" />
           </a>
         </li>
         { pages }
         <li className="page-item">
           <a className="page-link" href="#" onClick={ this.handleOlder }>
-            <Icon name="angle-right" />
+            <Icon name="angle-right" className="fas" />
           </a>
         </li>
         <li className="page-item">
           <a className="page-link" href="#" onClick={ (ev) => this.handlePage(ev, this.props.total) }>
-            <Icon name="angle-double-right" />
+            <Icon name="angle-double-right" className="fas" />
           </a>
         </li>
       </ul>

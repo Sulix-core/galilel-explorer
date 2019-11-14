@@ -42,7 +42,7 @@ export default class MenuDesktop extends Component {
             src={ iconSource }
             title={ this.state.isOpen ? null : i.label } />
           <span className="menu-desktop__item-label" >{ i.label }</span>
-          <Icon name="caret-left" className="menu-desktop__item-indicator" />
+          <Icon name="caret-left" className="menu-desktop__item-indicator fas" />
         </Link>
       )
     }
@@ -58,7 +58,7 @@ export default class MenuDesktop extends Component {
           <div className="menu-desktop__header">
             <img src="/img/whitelogo.svg" className="menu-desktop__logo" />
             <a onClick={ this.handleToggle } >
-              <Icon name="bars" className="menu-desktop__toggle" onClick={ this.handleToggle } />
+              <Icon name="bars" className="menu-desktop__toggle fas" onClick={ this.handleToggle } />
             </a>
           </div>
           <p className="menu-desktop__title">MENU</p>
