@@ -39,7 +39,7 @@ export default class SearchBar extends Component {
             className="search__input"
             onKeyPress={ this.handleKeyPress }
             placeholder={ props.placeholder } />
-          <Icon name="search" className="search__icon" />
+          <Icon name="search" className="search__icon fas" />
         </div>
       </div>
     );

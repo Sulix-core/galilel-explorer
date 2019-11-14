@@ -7,13 +7,11 @@ import React from 'react';
 
 export default class GraphLineFull extends Component {
   static defaultProps = {
-    color: 'rgba(121, 85, 72, 1)',
     data: [],
     labels: []
   };
 
   static propTypes = {
-    color: PropTypes.string.isRequired,
     data: PropTypes.array.isRequired,
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     labels: PropTypes.array.isRequired,
@@ -66,6 +64,8 @@ export default class GraphLineFull extends Component {
 
   getConfig = () => {
     const data = this.props.data.map(d => numeral(d).value());
+    const element = document.querySelector('.' + this.props.className);
+    const style = getComputedStyle(element);
 
     let max = Math.max.apply(Math, data);
     let min = Math.min.apply(Math, data);
@@ -79,9 +79,10 @@ export default class GraphLineFull extends Component {
     const ctx = canvas.getContext('2d');
     let gradientFill;
     if (ctx) {
+      const rgb = style.color.match(/\d+/g);
       gradientFill = ctx.createLinearGradient(canvas.width/2, 0, canvas.width/2, canvas.height*2);
-      gradientFill.addColorStop(0, "rgba(121, 85, 72, 0.6)");
-      gradientFill.addColorStop(1, "rgba(121, 85, 72, 0.0)");
+      gradientFill.addColorStop(0, "rgba(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ", 0.6)");
+      gradientFill.addColorStop(1, "rgba(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ", 0.0)");
     } else {
       gradientFill = false;
     }
@@ -92,7 +93,7 @@ export default class GraphLineFull extends Component {
         labels: this.props.labels,
         datasets: [{
           backgroundColor: gradientFill,
-          borderColor: this.props.color,
+          borderColor: style.color,
           borderWidth: 2,
           cubicInterpolationMode: 'monotone', /* default */
           capBezierPoints: true,
@@ -175,7 +176,7 @@ export default class GraphLineFull extends Component {
 
   render() {
     return (
-      <div style={{ height: this.props.height, width: this.props.width }}>
+      <div className={this.props.className}>
         <canvas id={this.id} />
       </div>
     );

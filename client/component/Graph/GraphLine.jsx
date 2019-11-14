@@ -6,13 +6,11 @@ import React from 'react';
 
 export default class GraphLine extends Component {
   static defaultProps = {
-    color: 'rgba(0, 255, 0, 1)',
     data: [],
     labels: []
   };
 
   static propTypes = {
-    color: PropTypes.string.isRequired,
     data: PropTypes.array.isRequired,
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     labels: PropTypes.array.isRequired,
@@ -64,6 +62,9 @@ export default class GraphLine extends Component {
   };
 
   getConfig = () => {
+    const element = document.querySelector('.' + this.props.className);
+    const style = getComputedStyle(element);
+
     let max = Math.max(this.props.data);
     let min = Math.min(this.props.data);
     max = max + (max * 0.1);
@@ -74,7 +75,7 @@ export default class GraphLine extends Component {
       data: {
         labels: this.props.labels,
         datasets: [{
-          borderColor: this.props.color,
+          borderColor: style.color,
           borderWidth: 3,
           cubicInterpolationMode: 'monotone', /* default */
           capBezierPoints: true,
@@ -160,9 +161,7 @@ export default class GraphLine extends Component {
 
   render() {
     return (
-      <div
-        className={`${ this.props.className ? this.props.className : '' }`}
-        style={{ height: this.props.height, width: this.props.width }}>
+      <div className={this.props.className}>
         <canvas id={this.id} />
       </div>
     );

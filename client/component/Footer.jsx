@@ -49,7 +49,7 @@ class Footer extends Component {
             <div>
               {config.socialMedia.map((media) => (
                 <a href={media.link} target="_blank">
-                  <Icon name={media.icon} className="fab footer__social-media-icon" />
+                  <Icon name={media.icon.split('-')[1]} className={`${media.icon.split('-')[0]} footer__social-media-icon`} />
                 </a>
               ))}
             </div>

@@ -117,11 +117,11 @@ class MasternodesList extends Component {
       switch (mn.network) {
         case "onion":
           return (
-            <span title="Onion Network"><Icon name="user-secret" className="pr-1 text-primary fa-lg" /></span>
+            <span title="Onion Network"><Icon name="user-secret" className="pr-1 text-primary fas fa-lg" /></span>
           )
         case "ipv6":
           return (
-            <span title="IPv6"><Icon name="desktop" className="pr-1 text-primary fa-lg" /></span>
+            <span title="IPv6"><Icon name="desktop" className="pr-1 text-primary fas fa-lg" /></span>
           )
         default:
           return null;

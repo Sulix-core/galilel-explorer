@@ -8,7 +8,7 @@
   line-height: 1.25;
   margin-top: 16px;
   margin-bottom: 16px;
-  min-height: 220px;
+  min-height: 250px;
   box-shadow: 0 1px 3px lighten($grey-85-black, 15%);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   border-radius: 5px;
@@ -134,6 +134,21 @@
   &--graph &__data-sub {
     font-size: .8em;
     color: $grey-35-black;
+  }
+
+  &--graph-masternode {
+    height: 75px;
+    color: $dark-brown-1;
+  }
+
+  &--graph-market-up {
+    height: 75px;
+    color: #61d75e
+  }
+
+  &--graph-market-down {
+    height: 75px;
+    color: #ed1c24
   }
 }
 

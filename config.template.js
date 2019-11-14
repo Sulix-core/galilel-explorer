@@ -77,63 +77,63 @@ const config = {
   apiProvider: 'CoinMarketCap',
 
   /**
-   * All links to website and social media.
+   * All links to social media.
    */
   socialMedia: [
     {
       'title': 'Website',
       'link': 'https://galilel.org/',
-      'icon': 'website'
+      'icon': 'fas-home'
     },
     {
       'title': 'Discord',
       'link': 'https://discord.galilel.org',
-      'icon': 'discord'
+      'icon': 'fab-discord'
     },
     {
       'title': 'Telegram',
       'link': 'https://t.me/GalilelEN',
-      'icon': 'telegram'
+      'icon': 'fab-telegram'
     },
     {
       'title': 'Twitter',
       'link': 'https://twitter.com/GalilelEN',
-      'icon': 'twitter'
+      'icon': 'fab-twitter'
     },
     {
       'title': 'BitcoinTalk',
       'link': 'https://bitcointalk.galilel.org',
-      'icon': 'bitcoin'
+      'icon': 'fab-bitcoin'
     },
     {
       'title': 'Facebook',
       'link': 'https://facebook.com/GalilelEN',
-      'icon': 'facebook'
+      'icon': 'fab-facebook'
     },
     {
       'title': 'YouTube',
       'link': 'https://youtube.com/channel/UC26rKBciicXp33dK8NkALmg',
-      'icon': 'youtube'
+      'icon': 'fab-youtube'
     },
     {
       'title': 'Github',
       'link': 'https://github.com/Galilel-Project',
-      'icon': 'github'
+      'icon': 'fab-github'
     },
     {
       'title': 'Instagram',
       'link': 'https://instagram.com/galilel_en/',
-      'icon': 'instagram'
+      'icon': 'fab-instagram'
     },
     {
       'title': 'Reddit',
       'link': 'https://www.reddit.com/r/Galilel/',
-      'icon': 'reddit'
+      'icon': 'fab-reddit'
     },
     {
       'title': 'Medium',
       'link': 'https://medium.com/galilel',
-      'icon': 'medium'
+      'icon': 'fab-medium'
     }
   ],
 

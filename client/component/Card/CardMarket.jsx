@@ -53,18 +53,18 @@ export default class CardStatus extends Component {
               <span
                 className={ `u--text-${ isPos ? 'green' : 'red' }` }
                 key={ dirArrow }>
-                <Icon className="card__icon--arrow" name={ dirArrow } />
-                <span>{ numeral(growth * 100.0).format('0,0.00') }% &nbsp;</span>
+                <Icon className="card__icon--arrow fas" name={ dirArrow } />
+                <span>&nbsp; { numeral(growth * 100.0).format('0,0.00') }% &nbsp;</span>
               </span>
+              <br />
               <span>In { this.props.xAxis.length * 5 } minutes</span>
             </p>
             <p className="card__info-source">Data from { config.apiProvider }</p>
           </div>
           <div className="col-sm-12 col-md-6 col-lg-8">
             <GraphLine
-              color={ isPos ? '#61d75e' : '#ed1c24' }
+              className={ isPos ? 'card--graph-market-up' : 'card--graph-market-down'}
               data={ this.props.yAxis.reverse() }
-              height="77px"
               labels={ this.props.xAxis.reverse() } />
           </div>
         </div>

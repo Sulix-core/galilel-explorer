@@ -53,7 +53,7 @@ export default class MenuMobile extends Component {
             onSearch={ this.props.onSearch }
             placeholder="Search Blockchain" />
           <a onClick={ this.handleToggle } >
-            <Icon name="bars" className="menu-mobile__toggle" onClick={ this.handleToggle } />
+            <Icon name="bars" className="menu-mobile__toggle fas" onClick={ this.handleToggle } />
           </a>
         </div>
         <div className="menu-mobile__item-wrapper" >
