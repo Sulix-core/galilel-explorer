@@ -211,11 +211,6 @@ hr {
   flex: 1;
   overflow-y: auto;
 
-  @media (min-width: 1600px) {
-    padding-left: $menu-width-open;
-    padding-right: $menu-width-open;
-  }
-
   @include media-breakpoint-down(sm) {
     margin-top: $menu-mobile-height;
   }
