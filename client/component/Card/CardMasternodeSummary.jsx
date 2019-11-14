@@ -42,7 +42,7 @@ export default class CardMasternodeSummary extends Component {
         <GraphLine
           color="#795548"
           data={ this.props.yAxis.reverse() }
-          height="100px"
+          height="75px"
           labels={ this.props.xAxis.reverse() } />
       </Card>
       </div>
