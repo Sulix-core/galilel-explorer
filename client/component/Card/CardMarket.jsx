@@ -62,9 +62,8 @@ export default class CardStatus extends Component {
           </div>
           <div className="col-sm-12 col-md-6 col-lg-8">
             <GraphLine
-              color={ isPos ? '#61d75e' : '#ed1c24' }
+              className={ isPos ? 'card--graph-market-up' : 'card--graph-market-down'}
               data={ this.props.yAxis.reverse() }
-              height="75px"
               labels={ this.props.xAxis.reverse() } />
           </div>
         </div>
