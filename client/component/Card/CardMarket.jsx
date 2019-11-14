@@ -54,8 +54,9 @@ export default class CardStatus extends Component {
                 className={ `u--text-${ isPos ? 'green' : 'red' }` }
                 key={ dirArrow }>
                 <Icon className="card__icon--arrow fas" name={ dirArrow } />
-                <span>{ numeral(growth * 100.0).format('0,0.00') }% &nbsp;</span>
+                <span>&nbsp; { numeral(growth * 100.0).format('0,0.00') }% &nbsp;</span>
               </span>
+              <br />
               <span>In { this.props.xAxis.length * 5 } minutes</span>
             </p>
             <p className="card__info-source">Data from { config.apiProvider }</p>
