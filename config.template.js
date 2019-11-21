@@ -72,7 +72,7 @@ const config = {
   },
 
   /**
-   * Specify the market API provider (coinMarketCap and coinGecko are supported).
+   * Specify the market API provider (CoinMarketCap and CoinGecko are supported).
    */
   apiProvider: 'CoinMarketCap',
 
